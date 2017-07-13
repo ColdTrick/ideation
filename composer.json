@@ -1,0 +1,20 @@
+{
+	"name": "coldtrick/ideation",
+	"description": "Help the creative process from idea to end result",
+	"type": "elgg-plugin",
+	"keywords": ["elgg", "plugin", "ideation"],
+	"license": "GPL-2.0",
+	"support": {
+		"source": "https://github.com/ColdTrick/ideation",
+		"issues": "https://github.com/ColdTrick/ideation/issues"
+	},
+	"require": {
+		"composer/installers": "^1.0.8"
+	},
+	"require-dev": {
+		"coldtrick/sniffs": "dev-master"
+	},
+	"conflict": {
+		"elgg/elgg": "<2.3"
+	}
+}
