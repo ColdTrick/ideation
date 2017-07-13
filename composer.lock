@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "74e673768fde2f20bb3ae28309868716",
+    "content-hash": "462e98407b6c00d307210ad1e7844c7d",
     "packages": [
         {
             "name": "composer/installers",
@@ -123,6 +123,33 @@
     ],
     "packages-dev": [
         {
+            "name": "coldtrick/releases",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ColdTrick/releases.git",
+                "reference": "bbf82576bc42d8b14c0d8f3d9aee24025fcbcba2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ColdTrick/releases/zipball/bbf82576bc42d8b14c0d8f3d9aee24025fcbcba2",
+                "reference": "bbf82576bc42d8b14c0d8f3d9aee24025fcbcba2",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0"
+            ],
+            "description": "A set of scripts needed for building releases",
+            "keywords": [
+                "ci",
+                "release",
+                "travis"
+            ],
+            "time": "2017-02-27T09:56:56+00:00"
+        },
+        {
             "name": "coldtrick/sniffs",
             "version": "dev-master",
             "source": {
@@ -147,7 +174,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Elgg coding standards",
-            "time": "2015-02-17T14:47:25+00:00"
+            "time": "2015-02-17 14:47:25"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -204,7 +231,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "coldtrick/sniffs": 20
+        "coldtrick/sniffs": 20,
+        "coldtrick/releases": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
