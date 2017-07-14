@@ -52,6 +52,11 @@ return [
 To view the idea, click here:
 %s",
 	
+	// questions support
+	'ideation:questions:edit:link' => "This question will be linked to the idea: %s",
+	'ideation:questions:related' => "Questions related to this idea",
+	'ideation:questions:idea:title' => "This question is related to idea: %s",
+	
 	// actions
 	'ideation:action:edit:success' => "Your idea was saved successfully",
 ];

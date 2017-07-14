@@ -33,6 +33,13 @@ function ideation_init() {
 	elgg_register_plugin_hook_handler('supported_context', 'filter_search', '\ColdTrick\Ideation\FilterSearch::supportedContext');
 	elgg_extend_view('resources/ideation/group', 'filter_search/no_filter_menu_fix', 400);
 	
+	// questions support
+	elgg_extend_view('forms/object/question/save', 'ideation/questions/save');
+	
+	elgg_register_event_handler('create', 'object', '\ColdTrick\Ideation\Questions::createQuestion');
+	
+	elgg_register_plugin_hook_handler('view_vars', 'resources/questions/view', '\ColdTrick\Ideation\Questions::registerQuestionExtend');
+	
 	// widget_pack support
 	elgg_register_plugin_hook_handler('supported_content', 'widgets:content_by_tag', '\ColdTrick\Ideation\WidgetPack::contentByTagSubtype');
 	

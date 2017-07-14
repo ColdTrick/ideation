@@ -14,6 +14,9 @@ elgg_set_page_owner_guid($container->guid);
 // validate group read access
 elgg_group_gatekeeper();
 
+// Questions support
+\ColdTrick\Ideation\Questions::registerTitleMenuItem($entity);
+
 // breadcrumb
 if ($container instanceof ElggUser) {
 	elgg_push_breadcrumb($container->getDisplayName(), "ideation/owner/{$container->username}");
@@ -27,6 +30,10 @@ elgg_push_breadcrumb(elgg_get_excerpt($entity->getDisplayName(), 50));
 $title = $entity->getDisplayName();
 
 $body = elgg_view_entity($entity);
+
+if (elgg_is_active_plugin('questions')) {
+	$body .= elgg_view('ideation/questions/linked', ['entity' => $entity]);
+}
 
 // build page
 $page_data = elgg_view_layout('content', [
