@@ -27,8 +27,11 @@ function ideation_init() {
 	elgg_register_plugin_hook_handler('likes:is_likable', 'object:' . Idea::SUBTYPE, '\Elgg\Values::getTrue');
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', '\ColdTrick\Ideation\Groups::registerGroupToolMenuItem');
 	elgg_register_plugin_hook_handler('register', 'menu:site', '\ColdTrick\Ideation\Menus::registerSiteMenuItem');
-	elgg_register_plugin_hook_handler('supported_context', 'filter_search', '\ColdTrick\Ideation\FilterSearch::supportedContext');
 	elgg_register_plugin_hook_handler('tool_options', 'group', '\ColdTrick\Ideation\Groups::registerGroupToolOption');
+	
+	// filter_search support
+	elgg_register_plugin_hook_handler('supported_context', 'filter_search', '\ColdTrick\Ideation\FilterSearch::supportedContext');
+	elgg_extend_view('resources/ideation/group', 'filter_search/no_filter_menu_fix', 400);
 	
 	// actions
 	elgg_register_action('ideation/edit', dirname(__FILE__) . '/actions/ideation/edit.php');
