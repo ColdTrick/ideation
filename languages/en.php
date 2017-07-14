@@ -32,6 +32,7 @@ return [
 	'ideation:owner:title:mine' => "My ideas",
 	'ideation:friends:title' => "%s's friends ideas",
 	'ideation:friends:title:mine' => "My friends ideas",
+	'ideation:group:title' => "%s's ideas",
 	'ideation:add:title' => "Create a new idea",
 	'ideation:edit:title' => "Edit idea: %s",
 	
@@ -41,7 +42,16 @@ return [
 	'ideation:status:rejected' => "Rejected",
 	'ideation:status:implemented' => "Implemented",
 	
+	// notifications
+	'ideation:notification:create:subject' => "New idea created: %s",
+	'ideation:notification:create:summary' => "New idea created: %s",
+	'ideation:notification:create:summary' => "Hi %s,
+
+%s created a new idea '%s'. Help make this a reality.
+
+To view the idea, click here:
+%s",
+	
 	// actions
 	'ideation:action:edit:success' => "Your idea was saved successfully",
-	'' => "",
 ];

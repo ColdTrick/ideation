@@ -18,6 +18,10 @@ function ideation_init() {
 	// make searchable
 	elgg_register_entity_type('object', Idea::SUBTYPE);
 	
+	// notifications
+	elgg_register_notification_event('object', Idea::SUBTYPE);
+	elgg_register_plugin_hook_handler('prepare', 'notification:create:object:' . Idea::SUBTYPE, '\ColdTrick\Ideation\Notifications::prepareCreateNotification');
+	
 	// plugin hooks
 	elgg_register_plugin_hook_handler('container_permissions_check', 'object', '\ColdTrick\Ideation\Permissions::ideaContainerPermissions');
 	elgg_register_plugin_hook_handler('likes:is_likable', 'object:' . Idea::SUBTYPE, '\Elgg\Values::getTrue');
