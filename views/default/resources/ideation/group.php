@@ -6,7 +6,7 @@
 $guid = (int) elgg_extract('guid', $vars);
 
 $entity = get_entity($guid);
-if (!($user instanceof ElggGroup)) {
+if (!($entity instanceof ElggGroup)) {
 	forward('', '404');
 }
 
