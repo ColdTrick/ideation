@@ -33,6 +33,9 @@ function ideation_init() {
 	elgg_register_plugin_hook_handler('supported_context', 'filter_search', '\ColdTrick\Ideation\FilterSearch::supportedContext');
 	elgg_extend_view('resources/ideation/group', 'filter_search/no_filter_menu_fix', 400);
 	
+	// widget_pack support
+	elgg_register_plugin_hook_handler('supported_content', 'widgets:content_by_tag', '\ColdTrick\Ideation\WidgetPack::contentByTagSubtype');
+	
 	// actions
 	elgg_register_action('ideation/edit', dirname(__FILE__) . '/actions/ideation/edit.php');
 	elgg_register_action('ideation/delete', dirname(__FILE__) . '/actions/ideation/delete.php');
