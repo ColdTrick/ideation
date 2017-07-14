@@ -10,8 +10,7 @@ if (!($entity instanceof Idea)) {
 	return;
 }
 
-$owner = $entity->getOwnerEntity();
-$owner_icon = elgg_view_entity_icon($owner, 'tiny');
+$icon = elgg_view_entity_icon($entity, 'tiny');
 
 $entity_menu = '';
 if (!elgg_in_context('widgets')) {
@@ -32,7 +31,7 @@ $params = [
 	'metadata' => $entity_menu,
 	'subtitle' => $subtitle,
 	'content' => $excerpt,
-	'icon' => $owner_icon,
+	'icon' => $icon,
 ];
 $params = $params + $vars;
 echo elgg_view('object/elements/summary', $params);
