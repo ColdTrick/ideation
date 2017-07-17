@@ -11,6 +11,7 @@ if (empty($title) || (empty($guid) && empty($container_guid))) {
 }
 
 $entity = false;
+$create = false;
 if (!empty($guid)) {
 	$entity = get_entity($guid);
 	if (!($entity instanceof Idea) || !$entity->canEdit()) {
@@ -23,6 +24,8 @@ if (!empty($guid)) {
 	} elseif (!$container->canWriteToContainer(0, 'object', Idea::SUBTYPE)) {
 		return elgg_error_response(elgg_echo('actionunauthorized'));
 	}
+	
+	$create = true;
 	
 	$entity = new Idea();
 	$entity->container_guid = $container->guid;
@@ -47,6 +50,16 @@ if (!is_array($tags)) {
 
 if ($entity->save()) {
 	elgg_clear_sticky_form('ideation/edit');
+	
+	if ($create) {
+		elgg_create_river_item([
+			'view' => 'river/object/idea/create',
+			'action_type' => 'create',
+			'subject_guid' => elgg_get_logged_in_user_guid(),
+			'object_guid' => $entity->guid,
+			'target_guid' => $entity->container_guid,
+		]);
+	}
 	
 	return elgg_ok_response('', elgg_echo('ideation:action:edit:success'), $entity->getURL());
 }

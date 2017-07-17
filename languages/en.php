@@ -20,6 +20,9 @@ return [
 	'ideation:group_tool_option:label' => "Enable group ideation",
 	'ideation:group_tool_option:description' => "Allow group members to share ideas and work on implementing the idea",
 	
+	// river
+	'river:create:object:idea' => "%s posted a new idea %s",
+	
 	// menus
 	// owner_block
 	'ideation:menu:owner_block:groups' => "Group ideation",
