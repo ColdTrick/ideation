@@ -22,6 +22,7 @@ return [
 	
 	// river
 	'river:create:object:idea' => "%s posted a new idea %s",
+	'ideation:river:object:question:attachment' => 'Asked on the idea: %s',
 	
 	// menus
 	// owner_block

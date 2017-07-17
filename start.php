@@ -45,6 +45,7 @@ function ideation_init() {
 	elgg_register_event_handler('create', 'object', '\ColdTrick\Ideation\Questions::createQuestion');
 	
 	elgg_register_plugin_hook_handler('view_vars', 'resources/questions/view', '\ColdTrick\Ideation\Questions::registerQuestionExtend');
+	elgg_register_plugin_hook_handler('view_vars', 'river/object/question/create', '\ColdTrick\Ideation\Questions::questionRiverAttachment');
 	
 	// widget_pack support
 	elgg_register_plugin_hook_handler('supported_content', 'widgets:content_by_tag', '\ColdTrick\Ideation\WidgetPack::contentByTagSubtype');

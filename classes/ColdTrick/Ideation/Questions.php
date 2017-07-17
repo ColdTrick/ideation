@@ -86,4 +86,42 @@ class Questions {
 		
 		elgg_extend_view('object/question', 'ideation/questions/idea');
 	}
+	
+	/**
+	 * Add an attachment link to the question river item (if linked)
+	 *
+	 * @param string $hook         the name of the hook
+	 * @param string $type         the type of the hook
+	 * @param array  $return_value current return value
+	 * @param mixed  $params       supplied params
+	 *
+	 * @return void|array
+	 */
+	public static function questionRiverAttachment($hook, $type, $return_value, $params) {
+		
+		$item = elgg_extract('item', $return_value);
+		if (!($item instanceof \ElggRiverItem)) {
+			return;
+		}
+		
+		$object = $item->getObjectEntity();
+		if (!($object instanceof \ElggQuestion)) {
+			return;
+		}
+		
+		$idea = ideation_get_idea_linked_to_question($object);
+		if (empty($idea)) {
+			return;
+		}
+		
+		$link = elgg_view('output/url', [
+			'text' => $idea->getDisplayName(),
+			'href' => $idea->getURL(),
+			'is_trusted' => true,
+		]);
+		
+		$return_value['attachments'] = elgg_echo('ideation:river:object:question:attachment', [$link]);
+		
+		return $return_value;
+	}
 }
