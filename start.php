@@ -22,6 +22,12 @@ function ideation_init() {
 	elgg_register_notification_event('object', Idea::SUBTYPE);
 	elgg_register_plugin_hook_handler('prepare', 'notification:create:object:' . Idea::SUBTYPE, '\ColdTrick\Ideation\Notifications::prepareCreateNotification');
 	
+	elgg_register_plugin_hook_handler('get', 'subscriptions', '\ColdTrick\Ideation\Notifications::addIdeaOwnerToQuestionSubscribers');
+	elgg_register_plugin_hook_handler('prepare', 'notification:create:object:question', '\ColdTrick\Ideation\Notifications::prepareQuestionNotificationForIdeaOwner');
+	
+	elgg_register_plugin_hook_handler('get', 'subscriptions', '\ColdTrick\Ideation\Notifications::addIdeaOwnerToAnswerSubscribers');
+	elgg_register_plugin_hook_handler('prepare', 'notification:create:object:answer', '\ColdTrick\Ideation\Notifications::prepareAnswerNotificationForIdeaOwner');
+	
 	// plugin hooks
 	elgg_register_plugin_hook_handler('container_permissions_check', 'object', '\ColdTrick\Ideation\Permissions::ideaContainerPermissions');
 	elgg_register_plugin_hook_handler('likes:is_likable', 'object:' . Idea::SUBTYPE, '\Elgg\Values::getTrue');

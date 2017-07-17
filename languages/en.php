@@ -52,6 +52,34 @@ return [
 To view the idea, click here:
 %s",
 	
+	'ideation:notification:idea:owner:question:create:subject' => "A new question was asked on your idea: %s",
+	'ideation:notification:idea:owner:question:create:summary' => "A new question was asked on your idea: %s",
+	'ideation:notification:idea:owner:question:create:summary' => "Hi %s,
+
+%s asked a question on your idea '%s'.
+
+%s
+
+To view the idea, click here:
+%s
+
+To view the question, click here:
+%s",
+	
+	'ideation:notification:idea:owner:answer:create:subject' => "A new answer was posted for your idea: %s",
+	'ideation:notification:idea:owner:answer:create:summary' => "A new question was posted for your idea: %s",
+	'ideation:notification:idea:owner:answer:create:summary' => "Hi %s,
+
+%s posted an answer to the question '%s' on your idea '%s'.
+
+%s
+
+To view the idea, click here:
+%s
+
+To view the answer, click here:
+%s",
+	
 	// questions support
 	'ideation:questions:edit:link' => "This question will be linked to the idea: %s",
 	'ideation:questions:related' => "Questions related to this idea",

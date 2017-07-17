@@ -88,3 +88,35 @@ function ideation_prepare_form_vars($entity = null) {
 	
 	return $defaults;
 }
+
+/**
+ * Get the idea linked to a question
+ *
+ * @param ElggQuestion $question
+ *
+ * @return false|Idea
+ */
+function ideation_get_idea_linked_to_question($question) {
+	
+	if (!elgg_is_active_plugin('questions')) {
+		// plugin not enabled so no checks needed
+		return false;
+	}
+	
+	if (!($question instanceof ElggQuestion)) {
+		return false;
+	}
+	
+	$ideas = $question->getEntitiesFromRelationship([
+		'type' => 'object',
+		'subtype' => \Idea::SUBTYPE,
+		'limit' => 1,
+		'relationship' => \Idea::QUESTION_RELATIONSHIP,
+	]);
+	if (empty($ideas)) {
+		// not linked
+		return false;
+	}
+	
+	return elgg_extract(0, $ideas);
+}
