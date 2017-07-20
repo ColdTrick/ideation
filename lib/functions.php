@@ -84,6 +84,8 @@ function ideation_prepare_form_vars($entity = null) {
 		foreach ($sticky as $name => $value) {
 			$defaults[$name] = $value;
 		}
+		
+		elgg_clear_sticky_form('ideation/edit');
 	}
 	
 	return $defaults;
