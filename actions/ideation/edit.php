@@ -49,6 +49,18 @@ if (!is_array($tags)) {
 }
 
 if ($entity->save()) {
+	// icon upload handling
+	$remove_icon = (bool) get_input('remove_icon');
+	if ($remove_icon) {
+		if ($entity->hasIcon('master')) {
+			$entity->deleteIcon();
+		}
+	} else {
+		// check for upload
+		$entity->saveIconFromUploadedFile('icon');
+	}
+	
+	// clear sticky form as everything went OK
 	elgg_clear_sticky_form('ideation/edit');
 	
 	if ($create) {

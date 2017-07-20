@@ -27,9 +27,13 @@ elgg_push_breadcrumb(elgg_echo('add'));
 // build page elements
 $title = elgg_echo('ideation:add:title');
 
+$form_vars = [
+	'enctype' => 'multipart/form-data',
+];
+
 $body_vars = ideation_prepare_form_vars();
 $body_vars['container_guid'] = $container->guid;
-$body = elgg_view_form('ideation/edit', [], $body_vars);
+$body = elgg_view_form('ideation/edit', $form_vars, $body_vars);
 
 // build page
 $page_data = elgg_view_layout('content', [

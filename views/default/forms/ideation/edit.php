@@ -34,6 +34,31 @@ echo elgg_view_field([
 	'required' => true,
 ]);
 
+// icon
+// Get post_max_size and upload_max_filesize
+$post_max_size = elgg_get_ini_setting_in_bytes('post_max_size');
+$upload_max_filesize = elgg_get_ini_setting_in_bytes('upload_max_filesize');
+
+// Determine the correct value
+$upload_limit = $upload_max_filesize > $post_max_size ? $post_max_size : $upload_max_filesize;
+
+echo elgg_view_field([
+	'#type' => 'file',
+	'#label' => elgg_echo('ideation:edit:icon'),
+	'#help' => elgg_echo('ideation:edit:icon', [$upload_limit]),
+	'name' => 'icon',
+]);
+
+if (($entity instanceof Idea) && $entity->hasIcon('master')) {
+	echo elgg_view_field([
+		'#type' => 'checkbox',
+		'#label' => elgg_echo('ideation:edit:icon:remove'),
+		'#help' => elgg_echo('ideation:edit:icon:remove:help'),
+		'name' => 'remove_icon',
+		'value' => 1,
+	]);
+}
+
 // description
 echo elgg_view_field([
 	'#type' => 'longtext',

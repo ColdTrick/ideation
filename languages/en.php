@@ -42,6 +42,13 @@ return [
 	'ideation:add:title' => "Create a new idea",
 	'ideation:edit:title' => "Edit idea: %s",
 	
+	// edit
+	'ideation:edit:icon' => "Icon",
+	'ideation:edit:icon:limit' => "Maximum allowed file size is %s",
+	
+	'ideation:edit:icon:remove' => "Remove the current icon",
+	'ideation:edit:icon:remove:help' => "Removes the current icon, this takes precedence over uploading an icon.",
+	
 	// status
 	'ideation:status:new' => "New",
 	'ideation:status:accepted' => "Accepted",

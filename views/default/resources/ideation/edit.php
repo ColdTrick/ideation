@@ -28,8 +28,12 @@ elgg_push_breadcrumb(elgg_echo('edit'));
 // build page elements
 $title = elgg_echo('ideation:edit:title', [$entity->getDisplayName()]);
 
+$form_vars = [
+	'enctype' => 'multipart/form-data',
+];
+
 $body_vars = ideation_prepare_form_vars($entity);
-$body = elgg_view_form('ideation/edit', [], $body_vars);
+$body = elgg_view_form('ideation/edit', $form_vars, $body_vars);
 
 // build page
 $page_data = elgg_view_layout('content', [
