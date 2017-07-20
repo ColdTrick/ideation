@@ -69,7 +69,40 @@ class Questions {
 			return;
 		}
 		
+		// link idea and question
 		$idea->linkQuestion($entity);
+		
+		// make sure we forward back to the idea, not the questions list
+		elgg_register_plugin_hook_handler('forward', 'system', '\ColdTrick\Ideation\Questions::forwardAfterCreate');
+	}
+	
+	/**
+	 * Forward to the Idea after linking a Question and Idea
+	 *
+	 * @param string $hook         the name of the hook
+	 * @param string $type         the type of the hook
+	 * @param array  $return_value current return value
+	 * @param mixed  $params       supplied params
+	 *
+	 * @return void|array
+	 */
+	public static function forwardAfterCreate($hook, $type, $return_value, $params) {
+		
+		if (!elgg_in_context('action')) {
+			return;
+		}
+		
+		$idea_guid = (int) get_input('idea_guid');
+		if (empty($idea_guid)) {
+			return;
+		}
+		
+		$idea = get_entity($idea_guid);
+		if (!($idea instanceof \Idea)) {
+			return;
+		}
+		
+		return $idea->getURL();
 	}
 	
 	/**
