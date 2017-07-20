@@ -15,6 +15,8 @@ return [
 	'ideation:settings:enable_personal:help' => "When enabled users can create use Ideation from their personal context, eg. not in groups.",
 	'ideation:settings:enable_groups' => "Enable Ideation for use in groups",
 	'ideation:settings:enable_groups:help' => "When enabled group owners can enable Ideation for their group. By default this feature is disabled in the group.",
+	'ideation:settings:suggested_questions_profile_fields' => "Which profile fields should be used in the suggested questions widget",
+	'ideation:settings:suggested_questions_profile_fields:help' => "Configure the profile fields which will be used in the suggested questions widget. Mulitple profile fields must be separated by a comma.",
 	
 	// groups
 	'ideation:group_tool_option:label' => "Enable group ideation",
@@ -88,6 +90,14 @@ To view the answer, click here:
 	'ideation:questions:edit:link' => "This question will be linked to the idea: %s",
 	'ideation:questions:related' => "Questions related to this idea",
 	'ideation:questions:idea:title' => "This question is related to idea: %s",
+	
+	// widgets
+	'widgets:ideation_suggested_questions:name' => "Suggested questions",
+	'widgets:ideation_suggested_questions:description' => "List open questions for ideas based on user profile tags",
+	'widgets:ideation_suggested_questions:error:profile_fields' => "No profile fields have been configured to show interesting questions, please contact your site administrator",
+	'widgets:ideation_suggested_questions:error:logged_out' => "You need to be logged in to use this widget",
+	'widgets:ideation_suggested_questions:error:user_profile' => "Not enough information on your profile to suggest questions, please fill your profile.",
+	'widgets:ideation_suggested_questions:error:no_results' => "No questions could be found based on your profile information.",
 	
 	// actions
 	'ideation:action:edit:success' => "Your idea was saved successfully",

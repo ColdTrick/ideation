@@ -47,6 +47,8 @@ function ideation_init() {
 	elgg_register_plugin_hook_handler('view_vars', 'resources/questions/view', '\ColdTrick\Ideation\Questions::registerQuestionExtend');
 	elgg_register_plugin_hook_handler('view_vars', 'river/object/question/create', '\ColdTrick\Ideation\Questions::questionRiverAttachment');
 	elgg_register_plugin_hook_handler('view_vars', 'forms/object/question/save', '\ColdTrick\Ideation\Questions::questionFormViewVars');
+	elgg_register_plugin_hook_handler('handlers', 'widgets', '\ColdTrick\Ideation\Questions::registerSuggestedQuestionsWidget');
+	elgg_register_plugin_hook_handler('entity:url', 'object', '\ColdTrick\Ideation\Questions::getTitleURLs');
 	
 	// widget_pack support
 	elgg_register_plugin_hook_handler('supported_content', 'widgets:content_by_tag', '\ColdTrick\Ideation\WidgetPack::contentByTagSubtype');

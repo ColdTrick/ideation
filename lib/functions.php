@@ -122,3 +122,22 @@ function ideation_get_idea_linked_to_question($question) {
 	
 	return elgg_extract(0, $ideas);
 }
+
+/**
+ * Get the profile fields configured for the suggested questions widget
+ *
+ * @return false|string[]
+ */
+function ideation_get_suggested_questions_profile_fields() {
+	
+	if (!elgg_is_active_plugin('questions')) {
+		return false;
+	}
+	
+	$fields = elgg_get_plugin_setting('suggested_questions_profile_fields', 'ideation');
+	if (empty($fields)) {
+		return false;
+	}
+	
+	return string_to_tag_array($fields);
+}

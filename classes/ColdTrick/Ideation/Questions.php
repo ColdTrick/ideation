@@ -188,4 +188,83 @@ class Questions {
 		
 		return $return_value;
 	}
+	
+	/**
+	 * Register the suggested questions widget
+	 *
+	 * @param string $hook         the name of the hook
+	 * @param string $type         the type of the hook
+	 * @param array  $return_value current return value
+	 * @param mixed  $params       supplied params
+	 *
+	 * @return void|array
+	 */
+	public static function registerSuggestedQuestionsWidget($hook, $type, $return_value, $params) {
+		
+		if (!elgg_is_logged_in()) {
+			// only for logged in users
+			return;
+		}
+		
+		if (!ideation_get_suggested_questions_profile_fields()) {
+			// questions not enabled
+			// or no profile fields configured
+			return;
+		}
+		
+		$page_owner = elgg_get_page_owner_entity();
+		if ($page_owner instanceof \ElggGroup) {
+			if ($page_owner->questions_enable !== 'yes') {
+				// not enabled for this group
+				return;
+			}
+		}
+		
+		try {
+			$widget = \Elgg\WidgetDefinition::factory([
+				'id' => 'ideation_suggested_questions',
+				'context' => ['index', 'dashboard', 'groups'],
+			]);
+		} catch (\Exception $e) {
+			return;
+		}
+		
+		$return_value[] = $widget;
+		
+		return $return_value;
+	}
+	
+	/**
+	 * Return a correct link for suggested_questions widget
+	 *
+	 * @param string $hook         the name of the hook
+	 * @param string $type         the type of the hook
+	 * @param mixed  $return_value current return value
+	 * @param mixed  $params       supplied params
+	 *
+	 * @return void|string
+	 */
+	public static function getTitleURLs($hook, $type, $return_value, $params) {
+		
+		if (!empty($return_value)) {
+			// url already set
+			return;
+		}
+		
+		$entity = elgg_extract('entity', $params);
+		if (!($entity instanceof \ElggWidget)) {
+			return;
+		}
+		
+		switch ($entity->handler) {
+			case 'ideation_suggested_questions':
+				
+				if ($entity->getOwnerEntity() instanceof \ElggGroup) {
+					return "questions/group/{$entity->owner_guid}/all";
+				}
+				
+				return 'questions/all';
+				break;
+		}
+	}
 }

@@ -29,3 +29,13 @@ echo elgg_view_field([
 	'value' => $plugin->enable_groups,
 	'options_values' => $yes_no_options,
 ]);
+
+if (elgg_is_active_plugin('questions')) {
+	echo elgg_view_field([
+		'#type' => 'text',
+		'#label' => elgg_echo('ideation:settings:suggested_questions_profile_fields'),
+		'#help' => elgg_echo('ideation:settings:suggested_questions_profile_fields:help'),
+		'name' => 'params[suggested_questions_profile_fields]',
+		'value' => $plugin->suggested_questions_profile_fields,
+	]);
+}
