@@ -59,6 +59,7 @@ function ideation_init() {
 		'context' => ['index', 'dashboard', 'groups'],
 		'multiple' => true,
 	]);
+	elgg_register_plugin_hook_handler('entity:url', 'object', '\ColdTrick\Ideation\Widgets::getTitleURLs');
 	
 	// actions
 	elgg_register_action('ideation/edit', dirname(__FILE__) . '/actions/ideation/edit.php');
