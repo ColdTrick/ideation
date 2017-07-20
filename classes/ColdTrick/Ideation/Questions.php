@@ -157,4 +157,35 @@ class Questions {
 		
 		return $return_value;
 	}
+	
+	/**
+	 * Extend view vars for question edit form
+	 *
+	 * @param string $hook         the name of the hook
+	 * @param string $type         the type of the hook
+	 * @param array  $return_value current return value
+	 * @param mixed  $params       supplied params
+	 *
+	 * @return void|array
+	 */
+	public static function questionFormViewVars($hook, $type, $return_value, $params) {
+		
+		$idea_guid = (int) get_input('idea_guid');
+		if (empty($idea_guid)) {
+			return;
+		}
+		
+		$idea = get_entity($idea_guid);
+		if (!($idea instanceof \Idea)) {
+			return;
+		}
+		
+		$return_value['idea_guid'] = $idea->guid;
+		if (empty($return_value['tags'])) {
+			// prefill (question) tags with the tags of the idea
+			$return_value['tags'] = $idea->tags;
+		}
+		
+		return $return_value;
+	}
 }

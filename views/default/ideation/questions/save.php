@@ -3,7 +3,7 @@
  * Extend the form object/question/save to support Idea linking
  */
 
-$idea_guid = (int) get_input('idea_guid');
+$idea_guid = (int) elgg_extract('idea_guid', $vars);
 if (empty($idea_guid)) {
 	return;
 }
