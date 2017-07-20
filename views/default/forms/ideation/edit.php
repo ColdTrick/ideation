@@ -6,12 +6,7 @@
 $entity = elgg_extract('entity', $vars);
 $container_guid = (int) elgg_extract('container_guid', $vars);
 
-$status_options = [
-	'new' => elgg_echo('ideation:status:new'),
-	'accepted' => elgg_echo('ideation:status:accepted'),
-	'rejected' => elgg_echo('ideation:status:rejected'),
-	'implemented' => elgg_echo('ideation:status:implemented'),
-];
+$status_options = ideation_get_status_options();
 
 // add or edit
 if ($entity instanceof Idea) {

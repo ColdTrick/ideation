@@ -53,6 +53,13 @@ function ideation_init() {
 	// widget_pack support
 	elgg_register_plugin_hook_handler('supported_content', 'widgets:content_by_tag', '\ColdTrick\Ideation\WidgetPack::contentByTagSubtype');
 	
+	// widgets
+	elgg_register_widget_type([
+		'id' => 'ideation',
+		'context' => ['index', 'dashboard', 'groups'],
+		'multiple' => true,
+	]);
+	
 	// actions
 	elgg_register_action('ideation/edit', dirname(__FILE__) . '/actions/ideation/edit.php');
 	elgg_register_action('ideation/delete', dirname(__FILE__) . '/actions/ideation/delete.php');

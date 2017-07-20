@@ -141,3 +141,34 @@ function ideation_get_suggested_questions_profile_fields() {
 	
 	return string_to_tag_array($fields);
 }
+
+/**
+ * Get the status options for ideas
+ *
+ * @param bool $add_empty add empty option at the beginning
+ *
+ * @return array
+ */
+function ideation_get_status_options($add_empty = false) {
+	
+	$result = [
+		'new' => elgg_echo('ideation:status:new'),
+		'accepted' => elgg_echo('ideation:status:accepted'),
+		'rejected' => elgg_echo('ideation:status:rejected'),
+		'implemented' => elgg_echo('ideation:status:implemented'),
+	];
+	
+	if ($add_empty === true) {
+		$empty = [
+			'' => elgg_echo('all'),
+		];
+		
+		$result = array_merge($empty, $result);
+	}
+	
+	$params = [
+		'defaults' => $result,
+		'add_empty' => $add_empty,
+	];
+	return elgg_trigger_plugin_hook('status_options', 'ideation', $params, $result);
+}

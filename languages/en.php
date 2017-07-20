@@ -99,6 +99,14 @@ To view the answer, click here:
 	'widgets:ideation_suggested_questions:error:user_profile' => "Not enough information on your profile to suggest questions, please fill your profile.",
 	'widgets:ideation_suggested_questions:error:no_results' => "No questions could be found based on your profile information.",
 	
+	'widgets:ideation:name' => "Ideas",
+	'widgets:ideation:description' => "List ideas with different selection options",
+	'widgets:ideation:status' => "Idea status",
+	'widgets:ideation:sort:updated' => "Last updated",
+	'widgets:ideation:listing' => "Listing view",
+	'widgets:ideation:listing:default' => "Normal content listing",
+	'widgets:ideation:listing:image' => "Image listing",
+	
 	// actions
 	'ideation:action:edit:success' => "Your idea was saved successfully",
 ];
