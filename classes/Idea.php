@@ -24,6 +24,14 @@ class Idea extends ElggObject {
 	}
 	
 	/**
+	 * {@inheritDoc}
+	 * @see ElggObject::canComment()
+	 */
+	public function canComment($user_guid = 0, $default = null) {
+		return false;
+	}
+	
+	/**
 	 * Link a question to this idea
 	 *
 	 * @param ElggQuestion $question the question to link
