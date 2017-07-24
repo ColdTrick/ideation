@@ -68,6 +68,8 @@ $defaults = [
 	],
 	'relationship' => Idea::QUESTION_RELATIONSHIP,
 	'inverse_relationship' => true,
+	'preload_owners' => true,
+	'preload_containers' => true,
 	'no_results' => elgg_echo('ideation:suggested:error:no_results'),
 ];
 

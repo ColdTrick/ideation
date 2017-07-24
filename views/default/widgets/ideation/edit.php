@@ -56,6 +56,6 @@ if (!($widget->getOwnerEntity() instanceof ElggGroup) && elgg_view_exists('input
 		'#type' => 'grouppicker',
 		'#label' => elgg_echo('group'),
 		'name' => 'params[group_guids]',
-		'values' => string_to_tag_array($widget->group_guids),
+		'values' => $widget->group_guids,
 	]);
 }

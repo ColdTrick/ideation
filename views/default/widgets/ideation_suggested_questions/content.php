@@ -15,6 +15,13 @@ $options = [
 
 if ($widget->getOwnerEntity() instanceof ElggGroup) {
 	$options['container_guid'] = $widget->owner_guid;
+	$options['preload_containers'] = false;
+} else {
+	
+	$group_guids = $widget->group_guids;
+	if (!empty($group_guids)) {
+		$options['container_guids'] = $group_guids;
+	}
 }
 
 echo elgg_view('ideation/questions/suggested', [

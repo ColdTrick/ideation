@@ -16,3 +16,13 @@ echo elgg_view_field([
 	'min' => 1,
 	'required' => true,
 ]);
+
+// container selector
+if (!($widget->getOwnerEntity() instanceof ElggGroup) && elgg_view_exists('input/grouppicker')) {
+	echo elgg_view_field([
+		'#type' => 'grouppicker',
+		'#label' => elgg_echo('group'),
+		'name' => 'params[group_guids]',
+		'values' => $widget->group_guids,
+	]);
+}
