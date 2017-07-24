@@ -11,8 +11,13 @@ if (!($entity instanceof Idea)) {
 }
 
 $icon = '';
-if ($entity->hasIcon('master')) {
-	$icon = elgg_view_entity_icon($entity, 'large');
+if ($entity->hasIcon('large')) {
+	$icon = elgg_view('output/img', [
+		'src' => $entity->getIconURL([
+			'size' => 'large',
+		]),
+		'class' => 'ideation-widget-image',
+	]);
 	$icon = elgg_format_element('div', ['class' => 'center'], $icon);
 }
 

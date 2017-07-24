@@ -12,6 +12,9 @@ elgg_register_event_handler('init', 'system', 'ideation_init');
  */
 function ideation_init() {
 	
+	// css
+	elgg_extend_view('elgg.css', 'css/ideation/site.css');
+	
 	// page handler for nice URLs
 	elgg_register_page_handler('ideation', '\ColdTrick\Ideation\PageHandler::ideation');
 	
