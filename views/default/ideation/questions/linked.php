@@ -18,6 +18,7 @@ $list = elgg_list_entities_from_relationship([
 	'inverse_relationship' => true,
 	'preload_owners' => true,
 	'preload_containers' => true,
+	'item_view' => 'ideation/questions/idea_listing',
 ]);
 if (empty($list)) {
 	return;
