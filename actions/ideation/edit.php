@@ -40,6 +40,8 @@ $entity->title = $title;
 $entity->description = get_input('description');
 $entity->access_id = (int) get_input('access_id');
 $entity->status = get_input('status');
+$entity->target_audience = get_input('target_audience');
+$entity->problem = get_input('problem');
 
 $tags = string_to_tag_array(get_input('tags'));
 if (!is_array($tags)) {

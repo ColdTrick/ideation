@@ -49,10 +49,27 @@ if (isset($entity->status)) {
 	);
 }
 
+// target audience
+if (isset($entity->target_audience)) {
+	$body .= elgg_format_element('div', [],
+		elgg_format_element('strong', [], elgg_echo('ideation:target_audience') . ':') . ' ' . $entity->target_audience
+	);
+}
+
 // description
 $body .= elgg_view('output/longtext', [
 	'value' => $entity->description,
 ]);
+
+// problem
+if (isset($entity->problem)) {
+	$body .= elgg_format_element('div', ['class' => 'mtl'],
+		elgg_format_element('strong', [], elgg_echo('ideation:problem') . ':')
+	);
+	$body .= elgg_view('output/longtext', [
+		'value' => $entity->problem,
+	]);
+}
 
 echo elgg_view('object/elements/full', [
 	'entity' => $entity,

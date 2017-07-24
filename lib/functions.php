@@ -66,6 +66,8 @@ function ideation_prepare_form_vars($entity = null) {
 		'description' => '',
 		'tags' => [],
 		'status' => 'new',
+		'target_audience' => '',
+		'problem' => '',
 		'access_id' => get_default_access(),
 	];
 	

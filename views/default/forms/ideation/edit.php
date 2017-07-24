@@ -85,6 +85,22 @@ echo elgg_view_field([
 	'options_values' => $status_options,
 ]);
 
+// target audience
+echo elgg_view_field([
+	'#type' => 'text',
+	'#label' => elgg_echo('ideation:target_audience'),
+	'name' => 'target_audience',
+	'value' => elgg_extract('target_audience', $vars),
+]);
+
+// problem
+echo elgg_view_field([
+	'#type' => 'longtext',
+	'#label' => elgg_echo('ideation:problem:question'),
+	'name' => 'problem',
+	'value' => elgg_extract('problem', $vars),
+]);
+
 // access
 echo elgg_view_field([
 	'#type' => 'access',

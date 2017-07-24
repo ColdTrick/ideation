@@ -11,6 +11,10 @@ return [
 	'ideation:add' => 'Add an idea',
 	'ideation:no_results' => 'No ideas created yet',
 	
+	'ideation:target_audience' => "Target audience",
+	'ideation:problem' => "This problem will be solved",
+	'ideation:problem:question' => "What problem does this idea solve",
+	
 	// plugin settings
 	'ideation:settings:enable_personal' => "Enable Ideation for personal use",
 	'ideation:settings:enable_personal:help' => "When enabled users can create use Ideation from their personal context, eg. not in groups.",
