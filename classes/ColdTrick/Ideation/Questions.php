@@ -260,10 +260,13 @@ class Questions {
 			case 'ideation_suggested_questions':
 				
 				if ($entity->getOwnerEntity() instanceof \ElggGroup) {
-					return "questions/group/{$entity->owner_guid}/all";
+					return "ideation/group/{$entity->owner_guid}/suggested";
 				}
 				
-				return 'questions/all';
+				$user = elgg_get_logged_in_user_entity();
+				if (!empty($user)) {
+					return "ideation/suggested/{$user->username}";
+				}
 				break;
 		}
 	}

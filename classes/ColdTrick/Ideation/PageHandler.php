@@ -28,7 +28,16 @@ class PageHandler {
 			case 'group':
 				$vars['guid'] = (int) elgg_extract(1, $page);
 				
-				echo elgg_view_resource('ideation/group', $vars);
+				switch (elgg_extract(2, $page)) {
+					case 'suggested':
+						$vars['container_guid'] = $vars['guid'];
+						echo elgg_view_resource('ideation/suggested', $vars);
+						break;
+					default:
+						echo elgg_view_resource('ideation/group', $vars);
+						break;
+				}
+				
 				return true;
 				break;
 			case 'owner':
@@ -59,6 +68,12 @@ class PageHandler {
 				$vars['guid'] = (int) elgg_extract(1, $page);
 				
 				echo elgg_view_resource('ideation/view', $vars);
+				return true;
+				break;
+			case 'suggested':
+				$vars['username'] = elgg_extract(1, $page);
+				
+				echo elgg_view_resource('ideation/suggested', $vars);
 				return true;
 				break;
 			default:

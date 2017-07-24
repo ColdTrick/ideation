@@ -31,13 +31,13 @@ function ideation_init() {
 	// plugin hooks
 	elgg_register_plugin_hook_handler('container_permissions_check', 'object', '\ColdTrick\Ideation\Permissions::ideaContainerPermissions');
 	elgg_register_plugin_hook_handler('likes:is_likable', 'object:' . Idea::SUBTYPE, '\Elgg\Values::getTrue');
+	elgg_register_plugin_hook_handler('register', 'menu:filter', '\ColdTrick\Ideation\Menus::registerFilterMenuItemSuggested');
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', '\ColdTrick\Ideation\Groups::registerGroupToolMenuItem');
 	elgg_register_plugin_hook_handler('register', 'menu:site', '\ColdTrick\Ideation\Menus::registerSiteMenuItem');
 	elgg_register_plugin_hook_handler('tool_options', 'group', '\ColdTrick\Ideation\Groups::registerGroupToolOption');
 	
 	// filter_search support
 	elgg_register_plugin_hook_handler('supported_context', 'filter_search', '\ColdTrick\Ideation\FilterSearch::supportedContext');
-	elgg_extend_view('resources/ideation/group', 'filter_search/no_filter_menu_fix', 400);
 	
 	// questions support
 	elgg_extend_view('forms/object/question/save', 'ideation/questions/save');

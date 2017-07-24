@@ -43,7 +43,7 @@ $body = elgg_list_entities([
 $page_data = elgg_view_layout('content', [
 	'title' => $title,
 	'content' => $body,
-	'filter' => false,
+	'all_link' => "ideation/group/{$entity->guid}/all",
 ]);
 
 // draw page

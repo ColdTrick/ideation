@@ -6,6 +6,7 @@ return [
 	'item:object:idea' => 'Idea',
 	
 	'ideation:breadcrumb:all' => 'Ideation',
+	'ideation:breadcrumb:suggested' => 'Suggested',
 	
 	'ideation:add' => 'Add an idea',
 	'ideation:no_results' => 'No ideas created yet',
@@ -31,6 +32,7 @@ return [
 	'ideation:menu:owner_block:groups' => "Group ideation",
 	// site
 	'ideation:menu:site:all' => "Ideation",
+	'ideation:menu:filter:suggested' => "Suggested",
 	
 	// pages
 	'ideation:all:title' => "All site ideas",
@@ -41,6 +43,13 @@ return [
 	'ideation:group:title' => "%s's ideas",
 	'ideation:add:title' => "Create a new idea",
 	'ideation:edit:title' => "Edit idea: %s",
+	'ideation:suggested:title' => "Suggested questions for you",
+	
+	// suggested
+	'ideation:suggested:error:profile_fields' => "No profile fields have been configured to show interesting questions, please contact your site administrator",
+	'ideation:suggested:error:logged_out' => "You need to be logged in to view this list",
+	'ideation:suggested:error:user_profile' => "Not enough information on your profile to suggest questions, please fill your profile.",
+	'ideation:suggested:error:no_results' => "No questions could be found based on your profile information.",
 	
 	// edit
 	'ideation:edit:icon' => "Icon",
@@ -101,10 +110,6 @@ To view the answer, click here:
 	// widgets
 	'widgets:ideation_suggested_questions:name' => "Suggested questions",
 	'widgets:ideation_suggested_questions:description' => "List open questions for ideas based on user profile tags",
-	'widgets:ideation_suggested_questions:error:profile_fields' => "No profile fields have been configured to show interesting questions, please contact your site administrator",
-	'widgets:ideation_suggested_questions:error:logged_out' => "You need to be logged in to use this widget",
-	'widgets:ideation_suggested_questions:error:user_profile' => "Not enough information on your profile to suggest questions, please fill your profile.",
-	'widgets:ideation_suggested_questions:error:no_results' => "No questions could be found based on your profile information.",
 	
 	'widgets:ideation:name' => "Ideas",
 	'widgets:ideation:description' => "List ideas with different selection options",
