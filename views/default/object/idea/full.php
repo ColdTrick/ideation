@@ -35,7 +35,22 @@ $params = $params + $vars;
 $summary = elgg_view('object/elements/summary', $params);
 
 // prepare full
-$body = elgg_view('output/longtext', [
+$body = '';
+
+// status
+if (isset($entity->status)) {
+	$status = $entity->status;
+	if (elgg_language_key_exists("ideation:status:{$status}")) {
+		$status = elgg_echo("ideation:status:{$status}");
+	}
+	
+	$body .= elgg_format_element('div', [],
+		elgg_format_element('strong', [], elgg_echo('status') . ':') . ' ' . $status
+	);
+}
+
+// description
+$body .= elgg_view('output/longtext', [
 	'value' => $entity->description,
 ]);
 
