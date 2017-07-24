@@ -16,8 +16,16 @@ if ($entity->hasIcon('large')) {
 		'src' => $entity->getIconURL([
 			'size' => 'large',
 		]),
+		'alt' => $entity->getDisplayName(),
 		'class' => 'ideation-widget-image',
 	]);
+	$icon = elgg_view('output/url', [
+		'text' => $icon,
+		'href' => $entity->getURL(),
+		'title' => $entity->getDisplayName(),
+		'is_trusted' => true,
+	]);
+	
 	$icon = elgg_format_element('div', ['class' => 'center'], $icon);
 }
 
