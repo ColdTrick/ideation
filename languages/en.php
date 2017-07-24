@@ -109,7 +109,7 @@ To view the answer, click here:
 	// questions support
 	'ideation:questions:edit:link' => "This question will be linked to the idea: %s",
 	'ideation:questions:related' => "Questions related to this idea",
-	'ideation:questions:idea:title' => "This question is related to idea: %s",
+	'ideation:questions:idea:title' => "Related idea",
 	
 	// widgets
 	'widgets:ideation_suggested_questions:name' => "Suggested questions",
