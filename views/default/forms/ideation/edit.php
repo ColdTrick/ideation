@@ -41,11 +41,12 @@ $upload_max_filesize = elgg_get_ini_setting_in_bytes('upload_max_filesize');
 
 // Determine the correct value
 $upload_limit = $upload_max_filesize > $post_max_size ? $post_max_size : $upload_max_filesize;
+$upload_limit = elgg_format_bytes($upload_limit);
 
 echo elgg_view_field([
 	'#type' => 'file',
 	'#label' => elgg_echo('ideation:edit:icon'),
-	'#help' => elgg_echo('ideation:edit:icon', [$upload_limit]),
+	'#help' => elgg_echo('ideation:edit:icon:limit', [$upload_limit]),
 	'name' => 'icon',
 ]);
 
