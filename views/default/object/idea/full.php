@@ -38,7 +38,7 @@ $summary = elgg_view('object/elements/summary', $params);
 $body = '';
 
 // status
-if (isset($entity->status)) {
+if (!empty($entity->status)) {
 	$status = $entity->status;
 	if (elgg_language_key_exists("ideation:status:{$status}")) {
 		$status = elgg_echo("ideation:status:{$status}");
@@ -50,7 +50,7 @@ if (isset($entity->status)) {
 }
 
 // target audience
-if (isset($entity->target_audience)) {
+if (!empty($entity->target_audience)) {
 	$body .= elgg_format_element('div', [],
 		elgg_format_element('strong', [], elgg_echo('ideation:target_audience') . ':') . ' ' . $entity->target_audience
 	);
@@ -62,7 +62,7 @@ $body .= elgg_view('output/longtext', [
 ]);
 
 // problem
-if (isset($entity->problem)) {
+if (!empty($entity->problem)) {
 	$body .= elgg_format_element('div', ['class' => 'mtl'],
 		elgg_format_element('strong', [], elgg_echo('ideation:problem') . ':')
 	);
