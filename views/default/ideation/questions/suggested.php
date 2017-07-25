@@ -7,6 +7,8 @@
 
 // is profile field configured
 $profile_fields = ideation_get_suggested_questions_profile_fields();
+elgg_log('profile_fields', 'WARNING');
+elgg_dump($profile_fields);
 if (empty($profile_fields)) {
 	// shouldn't happen
 	echo elgg_view('output/longtext', [
@@ -41,6 +43,8 @@ foreach ($profile_fields as $field) {
 }
 
 $tags = array_unique($tags);
+elgg_log('user tags', 'WARNING');
+elgg_dump($tags);
 if (empty($tags)) {
 	// user has no tags
 	echo elgg_view('output/longtext', [
@@ -74,5 +78,6 @@ $defaults = [
 ];
 
 $options = array_merge($defaults, elgg_extract('options', $vars, []));
-
+elgg_log('options', 'WARNING');
+elgg_dump($options);
 echo elgg_list_entities_from_relationship($options);
