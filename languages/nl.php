@@ -40,6 +40,7 @@ return array (
   'ideation:edit:icon:limit' => 'Maximaal toegestane bestandsgrootte is %s',
   'ideation:edit:icon:remove' => 'Verwijder het huidige icoon',
   'ideation:edit:icon:remove:help' => 'Verwijderd het huidige icoon, dit heeft voorrang boven het uploaden van een nieuw icoon',
+  'ideation:status' => 'Status',
   'ideation:status:new' => 'Nieuw',
   'ideation:status:accepted' => 'Geaccepteerd',
   'ideation:status:rejected' => 'Afgewezen',

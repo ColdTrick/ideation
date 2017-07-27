@@ -45,7 +45,7 @@ if (!empty($entity->status)) {
 	}
 	
 	$body .= elgg_format_element('div', ['class' => 'mbs'],
-		elgg_format_element('strong', [], elgg_echo('status') . ':') . ' ' . $status
+		elgg_format_element('strong', [], elgg_echo('ideation:status') . ':') . ' ' . $status
 	);
 }
 

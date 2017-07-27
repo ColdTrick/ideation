@@ -63,6 +63,7 @@ return [
 	'ideation:edit:icon:remove:help' => "Removes the current icon, this takes precedence over uploading an icon.",
 	
 	// status
+	'ideation:status' => "Status",
 	'ideation:status:new' => "New",
 	'ideation:status:accepted' => "Accepted",
 	'ideation:status:rejected' => "Rejected",

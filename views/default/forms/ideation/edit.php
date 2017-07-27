@@ -79,7 +79,7 @@ echo elgg_view_field([
 // status
 echo elgg_view_field([
 	'#type' => 'select',
-	'#label' => elgg_echo('status'),
+	'#label' => elgg_echo('ideation:status'),
 	'name' => 'status',
 	'value' => elgg_extract('status', $vars),
 	'options_values' => $status_options,
