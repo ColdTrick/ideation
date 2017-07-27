@@ -44,31 +44,38 @@ if (!empty($entity->status)) {
 		$status = elgg_echo("ideation:status:{$status}");
 	}
 	
-	$body .= elgg_format_element('div', [],
+	$body .= elgg_format_element('div', ['class' => 'mbs'],
 		elgg_format_element('strong', [], elgg_echo('status') . ':') . ' ' . $status
 	);
 }
 
 // target audience
 if (!empty($entity->target_audience)) {
-	$body .= elgg_format_element('div', [],
+	$body .= elgg_format_element('div', ['class' => 'mbs'],
 		elgg_format_element('strong', [], elgg_echo('ideation:target_audience') . ':') . ' ' . $entity->target_audience
 	);
 }
 
 // description
-$body .= elgg_view('output/longtext', [
-	'value' => $entity->description,
-]);
+if (!empty($entity->description)) {
+	$description = elgg_format_element('strong', [], elgg_echo('description') . ':');
+	$description .= elgg_view('output/longtext', [
+		'value' => $entity->description,
+		'class' => 'mtn',
+	]);
+	
+	$body .= elgg_format_element('div', ['class' => 'mbs'], $description);
+}
 
 // problem
 if (!empty($entity->problem)) {
-	$body .= elgg_format_element('div', ['class' => 'mtl'],
-		elgg_format_element('strong', [], elgg_echo('ideation:problem') . ':')
-	);
-	$body .= elgg_view('output/longtext', [
+	$problem = elgg_format_element('strong', [], elgg_echo('ideation:problem') . ':');
+	$problem .= elgg_view('output/longtext', [
 		'value' => $entity->problem,
+		'class' => 'mtn',
 	]);
+	
+	$body .= elgg_format_element('div', ['class' => 'mbs'], $problem);
 }
 
 echo elgg_view('object/elements/full', [
