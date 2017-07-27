@@ -38,4 +38,4 @@ $link = elgg_view('output/url', [
 $subtitle = elgg_view('page/elements/by_line', $vars);
 $subtitle = elgg_format_element('div', ['class' => 'elgg-subtext'], $subtitle);
 
-echo $icon . $link . $subtitle;
+echo elgg_view_image_block('', $icon . $link . $subtitle);
