@@ -263,7 +263,7 @@ class Notifications {
 	 *
 	 * @return bool
 	 */
-	protected function validateQuestionNotificationEvent($event) {
+	protected static function validateQuestionNotificationEvent($event) {
 		
 		if (!elgg_is_active_plugin('questions')) {
 			// plugin not enabled so no checks needed
@@ -291,7 +291,7 @@ class Notifications {
 	 *
 	 * @return bool
 	 */
-	protected function validateAnswerNotificationEvent($event) {
+	protected static function validateAnswerNotificationEvent($event) {
 		
 		if (!elgg_is_active_plugin('questions')) {
 			// plugin not enabled so no checks needed
