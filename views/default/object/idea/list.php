@@ -12,8 +12,9 @@ if (!($entity instanceof Idea)) {
 
 $icon = elgg_view_entity_icon($entity, 'tiny');
 
+$show_entity_menu = (bool) elgg_extract('show_entity_menu', $vars, !elgg_in_context('widgets'));
 $entity_menu = '';
-if (!elgg_in_context('widgets')) {
+if ($show_entity_menu) {
 	$entity_menu = elgg_view_menu('entity', [
 		'handler' => 'ideation',
 		'entity' => $entity,
