@@ -8,6 +8,8 @@ $container_guid = (int) elgg_extract('container_guid', $vars);
 
 $status_options = ideation_get_status_options();
 
+$required_fields = elgg_extract('required_fields', $vars, ['title']);
+
 // add or edit
 if ($entity instanceof Idea) {
 	// edit
@@ -31,7 +33,7 @@ echo elgg_view_field([
 	'#label' => elgg_echo('title'),
 	'name' => 'title',
 	'value' => elgg_extract('title', $vars),
-	'required' => true,
+	'required' => in_array('title', $required_fields),
 ]);
 
 // icon
@@ -48,6 +50,7 @@ echo elgg_view_field([
 	'#label' => elgg_echo('ideation:edit:icon'),
 	'#help' => elgg_echo('ideation:edit:icon:limit', [$upload_limit]),
 	'name' => 'icon',
+	'required' => in_array('icon', $required_fields),
 ]);
 
 if (($entity instanceof Idea) && $entity->hasIcon('master')) {
@@ -66,6 +69,7 @@ echo elgg_view_field([
 	'#label' => elgg_echo('description'),
 	'name' => 'description',
 	'value' => elgg_extract('description', $vars),
+	'required' => in_array('description', $required_fields),
 ]);
 
 // tags
@@ -74,6 +78,7 @@ echo elgg_view_field([
 	'#label' => elgg_echo('tags'),
 	'name' => 'tags',
 	'value' => elgg_extract('tags', $vars),
+	'required' => in_array('tags', $required_fields),
 ]);
 
 // status
@@ -83,6 +88,7 @@ echo elgg_view_field([
 	'name' => 'status',
 	'value' => elgg_extract('status', $vars),
 	'options_values' => $status_options,
+	'required' => in_array('status', $required_fields),
 ]);
 
 // target audience
@@ -91,6 +97,7 @@ echo elgg_view_field([
 	'#label' => elgg_echo('ideation:target_audience'),
 	'name' => 'target_audience',
 	'value' => elgg_extract('target_audience', $vars),
+	'required' => in_array('target_audience', $required_fields),
 ]);
 
 // problem
@@ -99,6 +106,7 @@ echo elgg_view_field([
 	'#label' => elgg_echo('ideation:problem:question'),
 	'name' => 'problem',
 	'value' => elgg_extract('problem', $vars),
+	'required' => in_array('problem', $required_fields),
 ]);
 
 // access
