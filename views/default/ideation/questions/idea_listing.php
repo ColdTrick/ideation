@@ -60,8 +60,11 @@ if (!empty($answer)) {
 		'is_trusted' => true,
 	]);
 	
+	$subtitle[] = '-';
+	$subtitle[] = elgg_echo('questions:answered:correct', [$link, '']);
+	
 	$answer_text = elgg_view('output/longtext', [
-		'value' => elgg_echo('questions:answered:correct', [$link, $answer->description]),
+		'value' => $answer->description,
 	]);
 }
 
