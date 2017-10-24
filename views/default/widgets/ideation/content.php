@@ -52,4 +52,4 @@ if ($widget->getOwnerEntity() instanceof ElggGroup) {
 	}
 }
 
-echo elgg_list_entities_from_relationship($options);
+echo elgg_list_entities_from_metadata($options);
