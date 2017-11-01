@@ -1,6 +1,12 @@
 Version history
 ===============
 
+1.1 (2017-11-01):
+
+- added: entity menu can be controlled by view_vars hook
+- added: required fields can be controlled via view_vars on edit form
+- changed: correct answer giver text added to subtitle in idea full view
+
 1.0 (2017-07-31):
 
 - added: basic plugin features
