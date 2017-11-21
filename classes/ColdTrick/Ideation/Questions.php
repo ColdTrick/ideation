@@ -31,7 +31,7 @@ class Questions {
 			return;
 		}
 		
-		if (($container instanceof ElggGroup) && ($container->questions_enable !== 'yes')) {
+		if (($container instanceof \ElggGroup) && ($container->questions_enable !== 'yes')) {
 			// questions not enabled in this group
 			return;
 		}
