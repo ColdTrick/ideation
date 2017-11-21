@@ -270,4 +270,50 @@ class Questions {
 				break;
 		}
 	}
+	
+	/**
+	 * Can a question be asked if linked to idea
+	 *
+	 * @param string $hook         the name of the hook
+	 * @param string $type         the type of the hook
+	 * @param bool   $return_value current return value
+	 * @param array  $params       supplied params
+	 *
+	 * @return void|true
+	 */
+	public static function canAskLinkedQuestion($hook, $type, $return_value, $params) {
+		
+		if (!elgg_is_active_plugin('questions')) {
+			// plugin not active
+			return;
+		}
+		
+		$subtype = elgg_extract('subtype', $params);
+		if ($subtype !== \ElggQuestion::SUBTYPE) {
+			return;
+		}
+		
+		$user = elgg_extract('user', $params);
+		$container = elgg_extract('container', $params);
+		if (!($user instanceof \ElggUser) || !($container instanceof \ElggGroup)) {
+			return;
+		}
+		
+		if ($return_value || ($container->questions_enable !== 'yes') || !$container->canWriteToContainer($user->guid, 'object', \Idea::SUBTYPE)) {
+			// already allowed, questions not enabled or not allowed to create Idea
+			return;
+		}
+		
+		$idea_guid = (int) get_input('idea_guid');
+		if (empty($idea_guid)) {
+			return;
+		}
+		
+		$idea = get_entity($idea_guid);
+		if (!($idea instanceof \Idea)) {
+			return;
+		}
+		
+		return true;
+	}
 }
