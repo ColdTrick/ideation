@@ -1,6 +1,11 @@
 Version history
 ===============
 
+1.1.1 (2017-11-29):
+
+- fixed: unabled to ask question if limited to experts
+- fixed: wrong class comparison
+
 1.1 (2017-11-01):
 
 - added: entity menu can be controlled by view_vars hook
