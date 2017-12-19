@@ -35,6 +35,7 @@ function ideation_init() {
 	elgg_register_plugin_hook_handler('container_permissions_check', 'object', '\ColdTrick\Ideation\Permissions::ideaContainerPermissions');
 	elgg_register_plugin_hook_handler('container_permissions_check', 'object', '\ColdTrick\Ideation\Questions::canAskLinkedQuestion');
 	elgg_register_plugin_hook_handler('likes:is_likable', 'object:' . Idea::SUBTYPE, '\Elgg\Values::getTrue');
+	elgg_register_plugin_hook_handler('register', 'menu:entity', '\ColdTrick\Ideation\Menus::registerEntityMenuDeleteConfirm');
 	elgg_register_plugin_hook_handler('register', 'menu:filter', '\ColdTrick\Ideation\Menus::registerFilterMenuItemSuggested');
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', '\ColdTrick\Ideation\Groups::registerGroupToolMenuItem');
 	elgg_register_plugin_hook_handler('register', 'menu:site', '\ColdTrick\Ideation\Menus::registerSiteMenuItem');

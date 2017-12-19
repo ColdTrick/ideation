@@ -89,4 +89,33 @@ class Menus {
 		
 		return $return_value;
 	}
+	
+	/**
+	 * Alter the confirm text on an Idea delete
+	 *
+	 * @param string          $hook         the name of the hook
+	 * @param string          $type         the type of the hook
+	 * @param \ElggMenuItem[] $return_value current return value
+	 * @param array           $params       supplied params
+	 *
+	 * @return void|\ElggMenuItem[]
+	 */
+	public static function registerEntityMenuDeleteConfirm($hook, $type, $return_value, $params) {
+		
+		$entity = elgg_extract('entity', $params);
+		if (!$entity instanceof \Idea || !$entity->canDelete()) {
+			return;
+		}
+		
+		foreach ($return_value as $menu_item) {
+			if ($menu_item->getName() !== 'delete') {
+				continue;
+			}
+			
+			$menu_item->setConfirmText(elgg_echo('ideation:idea:delete:confirm'));
+			break;
+		}
+		
+		return $return_value;
+	}
 }

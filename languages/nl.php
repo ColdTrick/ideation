@@ -1,10 +1,11 @@
 <?php
 /**
- * This file was created by Translation Editor v6.0-beta
- * On 2017-07-24 17:31
+ * This file was created by Translation Editor v6.0
+ * On 2017-12-19 11:41
  */
 
 return array (
+  'ideation:idea:delete:confirm' => 'Weet je zeker dat je dit Idee wilt verwijderen. Alle gerelateerde vragen worden ook verwijderd!',
   'item:object:idea' => 'Idee',
   'ideation:breadcrumb:all' => 'Ideation',
   'ideation:breadcrumb:suggested' => 'Aangeraden',

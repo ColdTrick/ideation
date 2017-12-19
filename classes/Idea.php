@@ -32,6 +32,24 @@ class Idea extends ElggObject {
 	}
 	
 	/**
+	 * {@inheritDoc}
+	 * @see ElggEntity::delete()
+	 */
+	public function delete($recursive = true) {
+		
+		if (!$this->canDelete()) {
+			return false;
+		}
+		
+		if ($recursive) {
+			// cleanup related questions
+			$this->deleteLinkedQuestions();
+		}
+		
+		return parent::delete($recursive);
+	}
+	
+	/**
 	 * Link a question to this idea
 	 *
 	 * @param ElggQuestion $question the question to link
@@ -49,5 +67,41 @@ class Idea extends ElggObject {
 		
 		// link question - idea
 		return $question->addRelationship($this->guid, self::QUESTION_RELATIONSHIP);
+	}
+	
+	/**
+	 * Remove linked questions
+	 *
+	 * @return int number of questions deleted
+	 */
+	protected function deleteLinkedQuestions() {
+		
+		if (!elgg_is_active_plugin('questions')) {
+			return 0;
+		}
+		
+		$ia = elgg_set_ignore_access(true);
+		
+		$batch = $this->getEntitiesFromRelationship([
+			'type' => 'object',
+			'subtype' => ElggQuestion::SUBTYPE,
+			'relationship' => self::QUESTION_RELATIONSHIP,
+			'inverse_relationship' => true,
+			'limit' => false,
+			'batch' => true,
+			'batch_inc_offset' => false,
+		]);
+		
+		$result = 0;
+		/* @var $question ElggQuestion */
+		foreach ($batch as $question) {
+			if ($question->delete()) {
+				$result++;
+			}
+		}
+		
+		elgg_set_ignore_access($ia);
+		
+		return $result;
 	}
 }

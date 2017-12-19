@@ -14,6 +14,7 @@ return [
 	'ideation:target_audience' => "Target audience",
 	'ideation:problem' => "This problem will be solved",
 	'ideation:problem:question' => "What problem does this idea solve",
+	'ideation:idea:delete:confirm' => "Are you sure you wish to delete this Idea. All related questions will also be deleted!",
 	
 	// plugin settings
 	'ideation:settings:enable_personal' => "Enable Ideation for personal use",
