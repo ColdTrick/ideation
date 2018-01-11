@@ -1,6 +1,10 @@
 Version history
 ===============
 
+1.2 (2018-01-11):
+
+- changed: related questions will be deleted when Idea is deleted
+
 1.1.1 (2017-11-29):
 
 - fixed: unabled to ask question if limited to experts
