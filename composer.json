@@ -3,7 +3,7 @@
 	"description": "Help the creative process from idea to end result",
 	"type": "elgg-plugin",
 	"keywords": ["elgg", "plugin", "ideation"],
-	"license": "GPL-2.0",
+	"license": "GPL-2.0-only",
 	"support": {
 		"source": "https://github.com/ColdTrick/ideation",
 		"issues": "https://github.com/ColdTrick/ideation/issues"
