@@ -67,6 +67,7 @@ return [
 	'ideation:status' => "Status",
 	'ideation:status:new' => "New",
 	'ideation:status:accepted' => "Accepted",
+	'ideation:status:in_progress' => "In progress",
 	'ideation:status:rejected' => "Rejected",
 	'ideation:status:implemented' => "Implemented",
 	

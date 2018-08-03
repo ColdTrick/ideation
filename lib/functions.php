@@ -156,6 +156,7 @@ function ideation_get_status_options($add_empty = false) {
 	$result = [
 		'new' => elgg_echo('ideation:status:new'),
 		'accepted' => elgg_echo('ideation:status:accepted'),
+		'in_progress' => elgg_echo('ideation:status:in_progress'),
 		'rejected' => elgg_echo('ideation:status:rejected'),
 		'implemented' => elgg_echo('ideation:status:implemented'),
 	];

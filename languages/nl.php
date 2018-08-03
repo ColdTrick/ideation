@@ -44,6 +44,7 @@ return array (
   'ideation:status' => 'Status',
   'ideation:status:new' => 'Nieuw',
   'ideation:status:accepted' => 'Geaccepteerd',
+  'ideation:status:in_progress' => 'In behandeling',
   'ideation:status:rejected' => 'Afgewezen',
   'ideation:status:implemented' => 'Geïmplementeerd',
   'ideation:notification:create:subject' => 'Er is een nieuw idee aangemaakt: %s',
