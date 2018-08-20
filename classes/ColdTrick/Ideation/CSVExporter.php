@@ -50,9 +50,9 @@ class CSVExporter {
 		}
 		
 		$values = [
-			elgg_echo('ideation:status') => 'ideation_status',
-			elgg_echo('ideation:target_audience') => 'target_audience',
-			elgg_echo('ideation:problem:question') => 'problem',
+			'ideation_status',
+			'target_audience',
+			'problem',
 		];
 		
 		return array_merge($return, $values);
