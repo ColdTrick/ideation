@@ -41,6 +41,10 @@ function ideation_init() {
 	elgg_register_plugin_hook_handler('register', 'menu:site', '\ColdTrick\Ideation\Menus::registerSiteMenuItem');
 	elgg_register_plugin_hook_handler('tool_options', 'group', '\ColdTrick\Ideation\Groups::registerGroupToolOption');
 	
+	elgg_register_plugin_hook_handler('get_exportable_values', 'csv_exporter', '\ColdTrick\Ideation\CSVExporter::exportableValues');
+	elgg_register_plugin_hook_handler('get_exportable_values:group', 'csv_exporter', '\ColdTrick\Ideation\CSVExporter::exportableGroupValues');
+	elgg_register_plugin_hook_handler('export_value', 'csv_exporter', '\ColdTrick\Ideation\CSVExporter::exportValue');
+	
 	// filter_search support
 	elgg_register_plugin_hook_handler('supported_context', 'filter_search', '\ColdTrick\Ideation\FilterSearch::supportedContext');
 	
