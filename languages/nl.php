@@ -1,10 +1,16 @@
 <?php
 /**
- * This file was created by Translation Editor v6.0
- * On 2017-12-19 11:41
+ * This file was created by Translation Editor v6.1
+ * On 2018-10-08 11:51
  */
 
 return array (
+  'ideation:settings:enable_comments' => 'Schakel reacties op Ideeën in',
+  'ideation:settings:enable_comments:help' => 'Indien dit is ingeschakeld kunnen gebruikers reacties achterlaten op Ideeën',
+  'ideation:settings:questions:title' => 'Questions plugin integratie',
+  'ideation:settings:enable_questions' => 'Schakel de integratie met Questions in',
+  'ideation:settings:enable_questions:help' => 'Indien dit is ingeschakeld kunnen gebruikers Vragen stellen over het Idee, deze vragen worden afgehandeld door de Questions plugin.',
+  'ideation:status:closed' => 'Gesloten',
   'ideation:idea:delete:confirm' => 'Weet je zeker dat je dit Idee wilt verwijderen. Alle gerelateerde vragen worden ook verwijderd!',
   'item:object:idea' => 'Idee',
   'ideation:breadcrumb:all' => 'Ideation',
