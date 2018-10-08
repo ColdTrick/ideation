@@ -35,6 +35,8 @@ if (elgg_is_active_plugin('questions')) {
 	$body .= elgg_view('ideation/questions/linked', ['entity' => $entity]);
 }
 
+$body .= elgg_view_comments($entity, $entity->canComment());
+
 // build page
 $page_data = elgg_view_layout('content', [
 	'title' => $title,

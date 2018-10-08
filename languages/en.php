@@ -21,6 +21,12 @@ return [
 	'ideation:settings:enable_personal:help' => "When enabled users can create use Ideation from their personal context, eg. not in groups.",
 	'ideation:settings:enable_groups' => "Enable Ideation for use in groups",
 	'ideation:settings:enable_groups:help' => "When enabled group owners can enable Ideation for their group. By default this feature is disabled in the group.",
+	'ideation:settings:enable_comments' => "Enable comments on Ideas",
+	'ideation:settings:enable_comments:help' => "When enabled users can leave comments on Ideas.",
+	
+	'ideation:settings:questions:title' => "Question plugin integration settings",
+	'ideation:settings:enable_questions' => "Enable Questions integration",
+	'ideation:settings:enable_questions:help' => "When enabled users can ask Questions about Ideas, which will be handled by the Questions plugin.",
 	'ideation:settings:suggested_questions_profile_fields' => "Which profile fields should be used in the suggested questions widget",
 	'ideation:settings:suggested_questions_profile_fields:help' => "Configure the profile fields which will be used in the suggested questions widget. Mulitple profile fields must be separated by a comma.",
 	
@@ -70,6 +76,7 @@ return [
 	'ideation:status:in_progress' => "In progress",
 	'ideation:status:rejected' => "Rejected",
 	'ideation:status:implemented' => "Implemented",
+	'ideation:status:closed' => "Closed",
 	
 	// notifications
 	'ideation:notification:create:subject' => "New idea created: %s",

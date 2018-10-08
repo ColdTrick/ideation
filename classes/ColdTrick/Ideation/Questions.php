@@ -17,7 +17,7 @@ class Questions {
 			return;
 		}
 		
-		if (!($entity instanceof \Idea) || !elgg_is_active_plugin('questions')) {
+		if (!$entity instanceof \Idea || !ideation_questions_integration_enabled()) {
 			return;
 		}
 		
@@ -170,6 +170,10 @@ class Questions {
 	 */
 	public static function questionFormViewVars($hook, $type, $return_value, $params) {
 		
+		if (!ideation_questions_integration_enabled()) {
+			return;
+		}
+		
 		$idea_guid = (int) get_input('idea_guid');
 		if (empty($idea_guid)) {
 			return;
@@ -283,7 +287,7 @@ class Questions {
 	 */
 	public static function canAskLinkedQuestion($hook, $type, $return_value, $params) {
 		
-		if (!elgg_is_active_plugin('questions')) {
+		if (!ideation_questions_integration_enabled()) {
 			// plugin not active
 			return;
 		}

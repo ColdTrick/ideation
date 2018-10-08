@@ -28,7 +28,20 @@ class Idea extends ElggObject {
 	 * @see ElggObject::canComment()
 	 */
 	public function canComment($user_guid = 0, $default = null) {
-		return false;
+		
+		if (!isset($default)) {
+			$default = true;
+			if (elgg_get_plugin_setting('enable_comments', 'ideation') === 'no') {
+				$default = false;
+			}
+			
+			// check if Idea is closed
+			if ($default && $this->isClosed()) {
+				$default = false;
+			}
+		}
+		
+		return parent::canComment($user_guid, $default);
 	}
 	
 	/**
@@ -50,6 +63,17 @@ class Idea extends ElggObject {
 	}
 	
 	/**
+	 * Check if the status of this Idea is a closed status
+	 *
+	 * @return bool
+	 */
+	public function isClosed() {
+		$closed_states = ideation_get_closed_states();
+		
+		return in_array($this->status, $closed_states);
+	}
+	
+	/**
 	 * Link a question to this idea
 	 *
 	 * @param ElggQuestion $question the question to link
@@ -58,7 +82,11 @@ class Idea extends ElggObject {
 	 */
 	public function linkQuestion($question) {
 		
-		if (!($question instanceof ElggQuestion)) {
+		if (!ideation_questions_integration_enabled()) {
+			return false;
+		}
+		
+		if (!$question instanceof ElggQuestion) {
 			return false;
 		}
 		

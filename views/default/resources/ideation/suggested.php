@@ -6,7 +6,7 @@
 
 elgg_gatekeeper();
 
-if (!elgg_is_active_plugin('questions')) {
+if (!ideation_get_suggested_questions_profile_fields()) {
 	// questions not enabled
 	forward(REFERER);
 }

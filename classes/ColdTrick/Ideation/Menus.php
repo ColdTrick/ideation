@@ -53,7 +53,7 @@ class Menus {
 				'friend',
 			];
 			
-			if (empty($user) || !elgg_is_active_plugin('questions')) {
+			if (empty($user) || !ideation_questions_integration_enabled()) {
 				$remove_items[] = 'all';
 			}
 		}
@@ -71,7 +71,7 @@ class Menus {
 		}
 		
 		// are we done
-		if (empty($user) || !elgg_is_active_plugin('questions')) {
+		if (empty($user) || !ideation_get_suggested_questions_profile_fields()) {
 			return $return_value;
 		}
 		

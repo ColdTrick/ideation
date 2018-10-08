@@ -3,6 +3,10 @@
  * Extend the form object/question/save to support Idea linking
  */
 
+if (!ideation_questions_integration_enabled()) {
+	return;
+}
+
 $idea_guid = (int) elgg_extract('idea_guid', $vars);
 if (empty($idea_guid)) {
 	return;
