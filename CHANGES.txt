@@ -1,6 +1,10 @@
 Version history
 ===============
 
+1.4 (2018-10-18):
+
+- added: plugin settings for comments and questions integration
+
 1.3 (2018-09-07):
 
 - added: extended support for csv_exporter
