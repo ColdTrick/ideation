@@ -17,7 +17,7 @@ return array (
   'ideation:breadcrumb:suggested' => 'Aangeraden',
   'ideation:add' => 'Nieuw idee',
   'ideation:no_results' => 'Er zijn nog geen ideeën aangemaakt',
-  'ideation:settings:enable_personal' => 'Schakel Ideation in voor persoonijlk gebruik',
+  'ideation:settings:enable_personal' => 'Schakel Ideation in voor persoonlijk gebruik',
   'ideation:settings:enable_personal:help' => 'Indien ingeschakeld kunnen gebruiker Ideation gebruiken in hun persoonlijke context, dus buiten groepen.',
   'ideation:settings:enable_groups' => 'Schakel Ideation in voor groepen',
   'ideation:settings:enable_groups:help' => 'Indien ingeschakeld kunnen groepsbeheerders Ideation inschakelen voor hun groep. Standaard is Ideation uitgeschakeld voor een groep.',

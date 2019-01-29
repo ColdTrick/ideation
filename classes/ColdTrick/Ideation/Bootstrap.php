@@ -15,7 +15,7 @@ class Bootstrap extends DefaultPluginBootstrap {
 		elgg_register_page_handler('ideation', '\ColdTrick\Ideation\PageHandler::ideation');
 				
 		// notifications
-		elgg_register_notification_event('object', Idea::SUBTYPE);
+		elgg_register_notification_event('object', \Idea::SUBTYPE);
 				
 		$this->initViews();
 		$this->initRegisterEvents();
@@ -54,14 +54,14 @@ class Bootstrap extends DefaultPluginBootstrap {
 		$hooks = $this->elgg()->hooks;
 		
 		$hooks->registerHandler('entity:url', 'object', '\ColdTrick\Ideation\Widgets::getTitleURLs');
-		$hooks->registerHandler('prepare', 'notification:create:object:' . Idea::SUBTYPE, '\ColdTrick\Ideation\Notifications::prepareCreateNotification');
+		$hooks->registerHandler('prepare', 'notification:create:object:' . \Idea::SUBTYPE, '\ColdTrick\Ideation\Notifications::prepareCreateNotification');
 		$hooks->registerHandler('get', 'subscriptions', '\ColdTrick\Ideation\Notifications::addIdeaOwnerToQuestionSubscribers');
 		$hooks->registerHandler('prepare', 'notification:create:object:question', '\ColdTrick\Ideation\Notifications::prepareQuestionNotificationForIdeaOwner');
 		$hooks->registerHandler('get', 'subscriptions', '\ColdTrick\Ideation\Notifications::addIdeaOwnerToAnswerSubscribers');
 		$hooks->registerHandler('prepare', 'notification:create:object:answer', '\ColdTrick\Ideation\Notifications::prepareAnswerNotificationForIdeaOwner');
 		$hooks->registerHandler('container_permissions_check', 'object', '\ColdTrick\Ideation\Permissions::ideaContainerPermissions');
 		$hooks->registerHandler('container_permissions_check', 'object', '\ColdTrick\Ideation\Questions::canAskLinkedQuestion');
-		$hooks->registerHandler('likes:is_likable', 'object:' . Idea::SUBTYPE, '\Elgg\Values::getTrue');
+		$hooks->registerHandler('likes:is_likable', 'object:' . \Idea::SUBTYPE, '\Elgg\Values::getTrue');
 		$hooks->registerHandler('register', 'menu:entity', '\ColdTrick\Ideation\Menus::registerEntityMenuDeleteConfirm');
 		$hooks->registerHandler('register', 'menu:filter', '\ColdTrick\Ideation\Menus::registerFilterMenuItemSuggested');
 		$hooks->registerHandler('register', 'menu:owner_block', '\ColdTrick\Ideation\Groups::registerGroupToolMenuItem');

@@ -6,6 +6,12 @@ require_once(dirname(__FILE__) . '/lib/functions.php');
 
 return [
 	'bootstrap' => Bootstrap::class,
+	'settings' => [
+		'enable_comments' => 'yes',
+		'enable_personal' => 'yes',
+		'enable_groups' => 'yes',
+		'enable_questions' => 'yes',
+	],
 	'entities' => [
 		[
 			'type' => 'object',
