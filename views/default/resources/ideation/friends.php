@@ -6,21 +6,13 @@
 $username = elgg_extract('username', $vars);
 
 $user = get_user_by_username($username);
-if (!($user instanceof ElggUser)) {
-	forward('', '404');
+if (!$user) {
+	throw new \Elgg\EntityNotFoundException();
 }
 
-// set pageowner
-elgg_set_page_owner_guid($user->guid);
+elgg_push_collection_breadcrumbs('object', 'idea', $user, true);
 
-// breadcrumb
-elgg_push_breadcrumb($user->getDisplayName(), "ideation/owner/{$user->username}");
-elgg_push_breadcrumb(elgg_echo('friends'));
-
-// title button
-if (ideation_enabled_for_personal()) {
-	elgg_register_title_button();
-}
+elgg_register_title_button('ideation', 'add', 'object', 'idea');
 
 // build page elements
 if ($user->guid === elgg_get_logged_in_user_guid()) {
@@ -35,9 +27,7 @@ $body = elgg_list_entities([
 	'relationship' => 'friend',
 	'relationship_guid' => $user->guid,
 	'relationship_join_on' => 'owner_guid',
-	'preload_containers' => true,
-	'preload_containers' => true,
-	'no_results' => elgg_echo('ideation:no_results'),
+	'no_results' => true,
 ]);
 
 // build page

@@ -5,27 +5,14 @@
 
 $guid = (int) elgg_extract('guid', $vars);
 
+elgg_entity_gatekeeper($guid, 'group');
 $entity = get_entity($guid);
-if (!($entity instanceof ElggGroup)) {
-	forward('', '404');
-}
 
-if (!ideation_enabled_for_groups($entity)) {
-	// not enabled for this group
-	forward(REFERER);
-}
+elgg_group_tool_gatekeeper('ideation', $entity->guid);
 
-// set pageowner
-elgg_set_page_owner_guid($entity->guid);
+elgg_push_collection_breadcrumbs('object', 'idea', $entity);
 
-// check group access
-elgg_group_gatekeeper();
-
-// breadcrumb
-elgg_push_breadcrumb($entity->getDisplayName());
-
-// title button
-elgg_register_title_button();
+elgg_register_title_button('ideation', 'add', 'object', 'idea');
 
 // build page elements
 $title = elgg_echo('ideation:group:title', [$entity->getDisplayName()]);
@@ -34,16 +21,14 @@ $body = elgg_list_entities([
 	'type' => 'object',
 	'subtype' => Idea::SUBTYPE,
 	'container_guid' => $entity->guid,
-	'preload_owners' => true,
 	'distinct' => false,
-	'no_results' => elgg_echo('ideation:no_results'),
+	'no_results' => true,
 ]);
 
 // build page
 $page_data = elgg_view_layout('content', [
 	'title' => $title,
 	'content' => $body,
-	'all_link' => "ideation/group/{$entity->guid}/all",
 ]);
 
 // draw page

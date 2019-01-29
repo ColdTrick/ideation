@@ -3,14 +3,9 @@
  * List all ideas
  */
 
-// breadcrumb
-elgg_pop_breadcrumb();
-elgg_push_breadcrumb(elgg_echo('ideation:breadcrumb:all'));
+elgg_push_collection_breadcrumbs('object', 'idea');
 
-// title button
-if (ideation_enabled_for_personal()) {
-	elgg_register_title_button();
-}
+elgg_register_title_button('ideation', 'add', 'object', 'idea');
 
 // build page elements
 $title = elgg_echo('ideation:all:title');
@@ -18,10 +13,8 @@ $title = elgg_echo('ideation:all:title');
 $body = elgg_list_entities([
 	'type' => 'object',
 	'subtype' => Idea::SUBTYPE,
-	'preload_owners' => true,
-	'preload_containers' => true,
 	'distinct' => false,
-	'no_results' => elgg_echo('ideation:no_results'),
+	'no_results' => true,
 ]);
 
 // build page

@@ -68,11 +68,9 @@ $defaults = [
 	],
 	'relationship' => Idea::QUESTION_RELATIONSHIP,
 	'inverse_relationship' => true,
-	'preload_owners' => true,
-	'preload_containers' => true,
 	'no_results' => elgg_echo('ideation:suggested:error:no_results'),
 ];
 
 $options = array_merge($defaults, elgg_extract('options', $vars, []));
 
-echo elgg_list_entities_from_relationship($options);
+echo elgg_list_entities($options);

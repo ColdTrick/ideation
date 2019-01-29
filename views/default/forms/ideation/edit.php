@@ -6,8 +6,6 @@
 $entity = elgg_extract('entity', $vars);
 $container_guid = (int) elgg_extract('container_guid', $vars);
 
-$status_options = ideation_get_status_options();
-
 $required_fields = elgg_extract('required_fields', $vars, ['title']);
 
 // add or edit
@@ -36,32 +34,11 @@ echo elgg_view_field([
 	'required' => in_array('title', $required_fields),
 ]);
 
-// icon
-// Get post_max_size and upload_max_filesize
-$post_max_size = elgg_get_ini_setting_in_bytes('post_max_size');
-$upload_max_filesize = elgg_get_ini_setting_in_bytes('upload_max_filesize');
-
-// Determine the correct value
-$upload_limit = $upload_max_filesize > $post_max_size ? $post_max_size : $upload_max_filesize;
-$upload_limit = elgg_format_bytes($upload_limit);
-
-echo elgg_view_field([
-	'#type' => 'file',
-	'#label' => elgg_echo('ideation:edit:icon'),
-	'#help' => elgg_echo('ideation:edit:icon:limit', [$upload_limit]),
-	'name' => 'icon',
-	'required' => in_array('icon', $required_fields),
+echo elgg_view('entity/edit/icon', [
+	'entity' => $entity,
+	'entity_type' => 'object',
+	'entity_subtype' => 'idea',
 ]);
-
-if (($entity instanceof Idea) && $entity->hasIcon('master')) {
-	echo elgg_view_field([
-		'#type' => 'checkbox',
-		'#label' => elgg_echo('ideation:edit:icon:remove'),
-		'#help' => elgg_echo('ideation:edit:icon:remove:help'),
-		'name' => 'remove_icon',
-		'value' => 1,
-	]);
-}
 
 // description
 echo elgg_view_field([
@@ -87,7 +64,7 @@ echo elgg_view_field([
 	'#label' => elgg_echo('ideation:status'),
 	'name' => 'status',
 	'value' => elgg_extract('status', $vars),
-	'options_values' => $status_options,
+	'options_values' => ideation_get_status_options(),
 	'required' => in_array('status', $required_fields),
 ]);
 

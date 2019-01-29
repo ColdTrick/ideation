@@ -10,10 +10,7 @@ class Bootstrap extends DefaultPluginBootstrap {
 	 * {@inheritdoc}
 	 */
 	public function init() {
-		
-		// page handler for nice URLs
-		elgg_register_page_handler('ideation', '\ColdTrick\Ideation\PageHandler::ideation');
-				
+						
 		// notifications
 		elgg_register_notification_event('object', \Idea::SUBTYPE);
 				
@@ -59,6 +56,7 @@ class Bootstrap extends DefaultPluginBootstrap {
 		$hooks->registerHandler('prepare', 'notification:create:object:question', '\ColdTrick\Ideation\Notifications::prepareQuestionNotificationForIdeaOwner');
 		$hooks->registerHandler('get', 'subscriptions', '\ColdTrick\Ideation\Notifications::addIdeaOwnerToAnswerSubscribers');
 		$hooks->registerHandler('prepare', 'notification:create:object:answer', '\ColdTrick\Ideation\Notifications::prepareAnswerNotificationForIdeaOwner');
+		$hooks->registerHandler('container_logic_check', 'object', '\ColdTrick\Ideation\Permissions::containerLogicCheck');
 		$hooks->registerHandler('container_permissions_check', 'object', '\ColdTrick\Ideation\Permissions::ideaContainerPermissions');
 		$hooks->registerHandler('container_permissions_check', 'object', '\ColdTrick\Ideation\Questions::canAskLinkedQuestion');
 		$hooks->registerHandler('likes:is_likable', 'object:' . \Idea::SUBTYPE, '\Elgg\Values::getTrue');
@@ -70,7 +68,6 @@ class Bootstrap extends DefaultPluginBootstrap {
 		$hooks->registerHandler('get_exportable_values', 'csv_exporter', '\ColdTrick\Ideation\CSVExporter::exportableValues');
 		$hooks->registerHandler('get_exportable_values:group', 'csv_exporter', '\ColdTrick\Ideation\CSVExporter::exportableGroupValues');
 		$hooks->registerHandler('export_value', 'csv_exporter', '\ColdTrick\Ideation\CSVExporter::exportValue');
-		$hooks->registerHandler('supported_context', 'filter_search', '\ColdTrick\Ideation\FilterSearch::supportedContext');
 		$hooks->registerHandler('view_vars', 'resources/questions/view', '\ColdTrick\Ideation\Questions::registerQuestionExtend');
 		$hooks->registerHandler('view_vars', 'river/object/question/create', '\ColdTrick\Ideation\Questions::questionRiverAttachment');
 		$hooks->registerHandler('view_vars', 'forms/object/question/save', '\ColdTrick\Ideation\Questions::questionFormViewVars');

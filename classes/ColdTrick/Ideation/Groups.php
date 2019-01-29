@@ -16,7 +16,7 @@ class Groups {
 	 */
 	public static function registerGroupToolOption($hook, $type, $return_value, $params) {
 		
-		if (!ideation_enabled_for_groups()) {
+		if (elgg_get_plugin_setting('enable_groups', 'ideation') === 'no') {
 			return;
 		}
 		
@@ -49,7 +49,7 @@ class Groups {
 			return;
 		}
 		
-		if (!ideation_enabled_for_groups($entity)) {
+		if (!$entity->isToolEnabled('ideation')) {
 			return;
 		}
 		

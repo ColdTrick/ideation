@@ -25,7 +25,7 @@ return array (
   'ideation:settings:suggested_questions_profile_fields:help' => 'Configureer welke profielvelden er moeten worden gebruikt in de aangeraden vragen widegt. Meerdere profielvelden moeten worden gescheiden door een komma.',
   'ideation:group_tool_option:label' => 'Groep ideation inschakelen',
   'ideation:group_tool_option:description' => 'Stel groepsleden in staat om ideeën te delen en te realiseren',
-  'river:create:object:idea' => '%s heeft een nieuw idee %s',
+  'river:object:idea:create' => '%s heeft een nieuw idee %s',
   'ideation:river:object:question:attachment' => 'Gesteld bij het idee: %s',
   'ideation:menu:owner_block:groups' => 'Groep ideation',
   'ideation:menu:site:all' => 'Ideation',

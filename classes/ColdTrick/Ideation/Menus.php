@@ -21,6 +21,7 @@ class Menus {
 		
 		$return_value[] = \ElggMenuItem::factory([
 			'name' => 'ideation',
+			'icon' => 'lightbulb-regular',
 			'text' => elgg_echo('ideation:menu:site:all'),
 			'href' => "ideation/all",
 		]);

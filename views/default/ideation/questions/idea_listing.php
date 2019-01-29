@@ -68,14 +68,12 @@ if (!empty($answer)) {
 	]);
 }
 
-// prepare params for listing
-$params = [
+$list_body = elgg_view('object/elements/summary', [
 	'entity' => $entity,
 	'title' => $title,
 	'tags' => false,
 	'subtitle' => implode(' ', $subtitle),
 	'content' => $answer_text,
-];
-$list_body = elgg_view('object/elements/summary', $params);
+]);
 
 echo elgg_view_image_block($poster_icon, $list_body);

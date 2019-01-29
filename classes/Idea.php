@@ -30,10 +30,7 @@ class Idea extends ElggObject {
 	public function canComment($user_guid = 0, $default = null) {
 		
 		if (!isset($default)) {
-			$default = true;
-			if (elgg_get_plugin_setting('enable_comments', 'ideation') === 'no') {
-				$default = false;
-			}
+			$default = (bool) (elgg_get_plugin_setting('enable_comments', 'ideation') === 'yes');
 			
 			// check if Idea is closed
 			if ($default && $this->isClosed()) {

@@ -50,32 +50,29 @@ if (!is_array($tags)) {
 	$entity->tags = $tags;
 }
 
-if ($entity->save()) {
-	// icon upload handling
-	$remove_icon = (bool) get_input('remove_icon');
-	if ($remove_icon) {
-		if ($entity->hasIcon('master')) {
-			$entity->deleteIcon();
-		}
-	} else {
-		// check for upload
-		$entity->saveIconFromUploadedFile('icon');
-	}
-	
-	// clear sticky form as everything went OK
-	elgg_clear_sticky_form('ideation/edit');
-	
-	if ($create) {
-		elgg_create_river_item([
-			'view' => 'river/object/idea/create',
-			'action_type' => 'create',
-			'subject_guid' => elgg_get_logged_in_user_guid(),
-			'object_guid' => $entity->guid,
-			'target_guid' => $entity->container_guid,
-		]);
-	}
-	
-	return elgg_ok_response('', elgg_echo('ideation:action:edit:success'), $entity->getURL());
+if (!$entity->save()) {
+	return elgg_error_response(elgg_echo('save:fail'));
 }
 
-return elgg_error_response(elgg_echo('save:fail'));
+// icon upload handling
+if (get_input('icon_remove')) {
+	$entity->deleteIcon();
+} else {
+	// check for upload
+	$entity->saveIconFromUploadedFile('icon');
+}
+
+// clear sticky form as everything went OK
+elgg_clear_sticky_form('ideation/edit');
+
+if ($create) {
+	elgg_create_river_item([
+		'view' => 'river/object/idea/create',
+		'action_type' => 'create',
+		'subject_guid' => elgg_get_logged_in_user_guid(),
+		'object_guid' => $entity->guid,
+		'target_guid' => $entity->container_guid,
+	]);
+}
+
+return elgg_ok_response('', elgg_echo('ideation:action:edit:success'), $entity->getURL());

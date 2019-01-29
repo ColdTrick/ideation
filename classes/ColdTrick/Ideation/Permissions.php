@@ -29,11 +29,37 @@ class Permissions {
 		$container = elgg_extract('container', $params);
 		
 		if ($container instanceof \ElggUser) {
-			if (!ideation_enabled_for_personal()) {
+			if (elgg_get_plugin_setting('enable_personal', 'ideation') === 'no') {
 				return false;
 			}
 		} elseif ($container instanceof \ElggGroup) {
-			if (!ideation_enabled_for_groups($container)) {
+			
+			if (!$container->isToolEnabled('ideation')) {
+				return false;
+			}
+		}
+	}
+	
+
+	/**
+	 * Checks if plugin setting allows users to write to a container
+	 *
+	 * @param \Elgg\Hook $hook 'container_logic_check', 'object'
+	 *
+	 * @return void|false
+	 */
+	public static function containerLogicCheck(\Elgg\Hook $hook) {
+		if ($hook->getParam('subtype') !== 'idea') {
+			return;
+		}
+		
+		$container = $hook->getParam('container');
+		if ($container instanceof \ElggGroup) {
+			if (elgg_get_plugin_setting('enable_group', 'ideation') === 'no') {
+				return false;
+			}
+		} else {
+			if (elgg_get_plugin_setting('enable_personal', 'ideation') === 'no') {
 				return false;
 			}
 		}

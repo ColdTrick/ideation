@@ -8,9 +8,6 @@ if (!ideation_questions_integration_enabled()) {
 }
 
 $idea_guid = (int) elgg_extract('idea_guid', $vars);
-if (empty($idea_guid)) {
-	return;
-}
 
 $idea = get_entity($idea_guid);
 if (!($idea instanceof Idea)) {

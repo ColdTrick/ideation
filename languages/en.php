@@ -4,6 +4,7 @@ return [
 	
 	// generic
 	'item:object:idea' => 'Idea',
+	'collection:object:idea' => 'Ideas',
 	
 	'ideation:breadcrumb:all' => 'Ideation',
 	'ideation:breadcrumb:suggested' => 'Suggested',
@@ -35,7 +36,7 @@ return [
 	'ideation:group_tool_option:description' => "Allow group members to share ideas and work on implementing the idea",
 	
 	// river
-	'river:create:object:idea' => "%s posted a new idea %s",
+	'river:object:idea:create' => "%s posted a new idea %s",
 	'ideation:river:object:question:attachment' => 'Asked on the idea: %s',
 	
 	// menus
