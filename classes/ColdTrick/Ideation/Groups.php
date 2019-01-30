@@ -20,14 +20,10 @@ class Groups {
 			return;
 		}
 		
-		// create tool config
-		$tool_config = new \stdClass();
-		$tool_config->name = 'ideation';
-		$tool_config->label = elgg_echo('ideation:group_tool_option:label');
-		$tool_config->default_on = false;
-		
-		
-		$return_value[] = $tool_config;
+		$return_value[] = new \Elgg\Groups\Tool('ideation', [
+			'label' => elgg_echo('ideation:group_tool_option:label'),
+			'default_on' => false,
+		]);
 		
 		return $return_value;
 	}
