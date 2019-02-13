@@ -4,19 +4,11 @@
  * based on profile data
  */
 
-$username = elgg_extract('username', $vars);
-$container_guid = elgg_extract('container_guid', $vars);
-
-if ($container_guid) {
-	elgg_entity_gatekeeper($container_guid, 'group');
-	elgg_group_tool_gatekeeper('ideation', $container_guid);
-	
-	$entity = get_entity($container_guid);
-} else {
-	$entity = get_user_by_username($username);
-}
-
-if (!$entity) {
+$page_owner = elgg_get_page_owner_entity();
+if ($page_owner instanceof ElggGroup) {
+	elgg_entity_gatekeeper($page_owner->guid, 'group');
+	elgg_group_tool_gatekeeper('ideation', $page_owner->guid);
+} elseif (!$page_owner instanceof ElggUser) {
 	throw new \Elgg\EntityNotFoundException();
 }
 
@@ -25,17 +17,16 @@ if (!ideation_get_suggested_questions_profile_fields()) {
 	forward(REFERER);
 }
 
-elgg_register_title_button('ideation', 'add', 'object', 'idea');
+elgg_register_title_button('ideation', 'add', 'object', Idea::SUBTYPE);
 
-elgg_push_collection_breadcrumbs('object', 'idea', $entity);
-elgg_push_breadcrumb(elgg_echo('ideation:breadcrumb:suggested'));
+elgg_push_collection_breadcrumbs('object', 'idea', $page_owner);
 
 // build page elements
 $title = elgg_echo('ideation:suggested:title');
 
 $body = elgg_view('ideation/questions/suggested', [
 	'options' => [
-		'container_guid' => $container_guid,
+		'container_guid' => $page_owner->guid,
 	],
 ]);
 

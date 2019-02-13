@@ -12,7 +12,7 @@ elgg_group_tool_gatekeeper('ideation', $entity->guid);
 
 elgg_push_collection_breadcrumbs('object', 'idea', $entity);
 
-elgg_register_title_button('ideation', 'add', 'object', 'idea');
+elgg_register_title_button('ideation', 'add', 'object', Idea::SUBTYPE);
 
 // build page elements
 $title = elgg_echo('ideation:group:title', [$entity->getDisplayName()]);
@@ -29,6 +29,7 @@ $body = elgg_list_entities([
 $page_data = elgg_view_layout('content', [
 	'title' => $title,
 	'content' => $body,
+	'filter_context' => 'group',
 ]);
 
 // draw page

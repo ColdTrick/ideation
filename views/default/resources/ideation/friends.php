@@ -3,29 +3,27 @@
  * List all ideas by the friends of a user
  */
 
-$username = elgg_extract('username', $vars);
-
-$user = get_user_by_username($username);
-if (!$user) {
+$page_owner = elgg_get_page_owner_entity();
+if (!$page_owner instanceof ElggUser) {
 	throw new \Elgg\EntityNotFoundException();
 }
 
-elgg_push_collection_breadcrumbs('object', 'idea', $user, true);
+elgg_push_collection_breadcrumbs('object', 'idea', $page_owner, true);
 
-elgg_register_title_button('ideation', 'add', 'object', 'idea');
+elgg_register_title_button('ideation', 'add', 'object', Idea::SUBTYPE);
 
 // build page elements
-if ($user->guid === elgg_get_logged_in_user_guid()) {
+if ($page_owner->guid === elgg_get_logged_in_user_guid()) {
 	$title = elgg_echo('ideation:friends:title:mine');
 } else {
-	$title = elgg_echo('ideation:friends:title', [$user->getDisplayName()]);
+	$title = elgg_echo('ideation:friends:title', [$page_owner->getDisplayName()]);
 }
 
 $body = elgg_list_entities([
 	'type' => 'object',
 	'subtype' => Idea::SUBTYPE,
 	'relationship' => 'friend',
-	'relationship_guid' => $user->guid,
+	'relationship_guid' => $page_owner->guid,
 	'relationship_join_on' => 'owner_guid',
 	'no_results' => true,
 ]);

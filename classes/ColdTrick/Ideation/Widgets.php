@@ -22,7 +22,7 @@ class Widgets {
 		}
 		
 		$entity = elgg_extract('entity', $params);
-		if (!($entity instanceof \ElggWidget)) {
+		if (!$entity instanceof \ElggWidget) {
 			return;
 		}
 		
@@ -30,10 +30,12 @@ class Widgets {
 			case 'ideation':
 				
 				if ($entity->getOwnerEntity() instanceof \ElggGroup) {
-					return "ideation/group/{$entity->owner_guid}/all";
+					return elgg_generate_url('collection:object:idea:group', [
+						'guid' => $entity->owner_guid,
+					]);
 				}
 				
-				return 'ideation/all';
+				return elgg_generate_url('collection:object:idea:all');
 				break;
 		}
 	}

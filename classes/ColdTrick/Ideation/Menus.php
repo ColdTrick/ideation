@@ -23,7 +23,7 @@ class Menus {
 			'name' => 'ideation',
 			'icon' => 'lightbulb-regular',
 			'text' => elgg_echo('ideation:menu:site:all'),
-			'href' => "ideation/all",
+			'href' => elgg_generate_url('default:object:idea'),
 		]);
 		
 		return $return_value;
@@ -32,18 +32,14 @@ class Menus {
 	/**
 	 * Alter the filter menu
 	 *
-	 * @param string          $hook         the name of the hook
-	 * @param string          $type         the type of the hook
-	 * @param \ElggMenuItem[] $return_value current return value
-	 * @param array           $params       supplied params
+	 * @param \Elgg\Hook $hook 'filter_tabs', 'ideation'
 	 *
-	 * @return void|\ElggMenuItem[]
+	 * @return \ElggMenuItem
 	 */
-	public static function registerFilterMenuItemSuggested($hook, $type, $return_value, $params) {
+	public static function registerFilterMenuItemSuggested(\Elgg\Hook $hook) {
 		
-		if (!elgg_in_context('ideation')) {
-			return;
-		}
+		/* @var $result MenuItems */
+		$result = $hook->getValue();
 		
 		$remove_items = [];
 		$page_owner = elgg_get_page_owner_entity();
@@ -60,35 +56,43 @@ class Menus {
 		}
 		
 		// remove unneeded items
-		if (!empty($remove_items)) {
-			/* @var $menu_time \ElggMenuItem */
-			foreach ($return_value as $index => $menu_item) {
-				if (!in_array($menu_item->getName(), $remove_items)) {
-					continue;
+		$all_present = false;
+		/* @var $menu_item \ElggMenuItem */
+		foreach ($result as $index => $menu_item) {
+			if (!in_array($menu_item->getName(), $remove_items)) {
+				if ($menu_item->getName() === 'all') {
+					$all_present = true;
 				}
-				
-				unset($return_value[$index]);
+				continue;
 			}
+			unset($result[$index]);
 		}
 		
 		// are we done
 		if (empty($user) || !ideation_get_suggested_questions_profile_fields()) {
-			return $return_value;
+			if ($all_present && count($result) === 1) {
+				return [];
+			}
+			return $result;
 		}
 		
-		$href = "ideation/suggested/{$user->username}";
+		$route_name = 'collection:object:idea:suggested';
+		$route_params = [];
 		if ($page_owner instanceof \ElggGroup) {
-			$href = "ideation/group/{$page_owner->guid}/suggested";
+			$route_name = 'collection:object:idea:group:suggested';
+			$route_params['guid'] = $page_owner->guid;
+		} else {
+			$route_params['username'] = $user->username;
 		}
 		
-		$return_value[] = \ElggMenuItem::factory([
+		$result[] = \ElggMenuItem::factory([
 			'name' => 'ideation_suggested',
 			'text' => elgg_echo('ideation:menu:filter:suggested'),
-			'href' => $href,
+			'href' => elgg_generate_url($route_name, $route_params),
 			'priority' => 500,
 		]);
 		
-		return $return_value;
+		return $result;
 	}
 	
 	/**

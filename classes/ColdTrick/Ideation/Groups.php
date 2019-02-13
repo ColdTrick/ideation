@@ -52,7 +52,9 @@ class Groups {
 		$return_value[] = \ElggMenuItem::factory([
 			'name' => 'ideation',
 			'text' => elgg_echo('ideation:menu:owner_block:groups'),
-			'href' => "ideation/group/{$entity->guid}/all",
+			'href' => elgg_generate_url('collection:object:idea:group', [
+				'guid' => $entity->guid,
+			]),
 		]);
 		
 		return $return_value;

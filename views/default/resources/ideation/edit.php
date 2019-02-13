@@ -1,7 +1,7 @@
 <?php
 
 $guid = elgg_extract('guid', $vars);
-elgg_entity_gatekeeper($guid, 'object', 'idea');
+elgg_entity_gatekeeper($guid, 'object', Idea::SUBTYPE);
 
 $entity = get_entity($guid);
 if (!$entity->canEdit()) {
@@ -9,7 +9,6 @@ if (!$entity->canEdit()) {
 }
 
 elgg_push_entity_breadcrumbs($entity);
-elgg_push_breadcrumb(elgg_echo('edit'));
 
 // build page elements
 $title = elgg_echo('ideation:edit:title', [$entity->getDisplayName()]);

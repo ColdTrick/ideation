@@ -6,7 +6,7 @@
  */
 
 $entity = elgg_extract('entity', $vars);
-if (!($entity instanceof ElggQuestion)) {
+if (!$entity instanceof ElggQuestion) {
 	return;
 }
 
@@ -24,10 +24,12 @@ $poster_link = elgg_view('output/url', [
 $subtitle[] = elgg_echo('questions:asked', [$poster_link]);
 
 $container = $entity->getContainerEntity();
-if (($container instanceof ElggGroup) && (elgg_get_page_owner_guid() !== $container->getGUID())) {
+if ($container instanceof ElggGroup && elgg_get_page_owner_guid() !== $container->guid) {
 	$group_link = elgg_view('output/url', [
-		'text' => $container->name,
-		'href' => "questions/group/{$container->getGUID()}/all",
+		'text' => $container->getDisplayName(),
+		'href' => elgg_generate_url('collection:object:question:group', [
+			'guid' => $container->guid,
+		]),
 		'is_trusted' => true
 	]);
 	$subtitle[] = elgg_echo('river:ingroup', [$group_link]);

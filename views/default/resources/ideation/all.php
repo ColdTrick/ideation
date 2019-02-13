@@ -5,7 +5,7 @@
 
 elgg_push_collection_breadcrumbs('object', 'idea');
 
-elgg_register_title_button('ideation', 'add', 'object', 'idea');
+elgg_register_title_button('ideation', 'add', 'object', Idea::SUBTYPE);
 
 // build page elements
 $title = elgg_echo('ideation:all:title');

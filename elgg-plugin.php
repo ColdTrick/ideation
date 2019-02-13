@@ -45,15 +45,15 @@ return [
 			'resource' => 'ideation/all',
 		],
 		'collection:object:idea:owner' => [
-			'path' => '/ideation/owner/{username?}',
+			'path' => '/ideation/owner/{username}',
 			'resource' => 'ideation/owner',
 		],
 		'collection:object:idea:friends' => [
-			'path' => '/ideation/friends/{username?}',
+			'path' => '/ideation/friends/{username}',
 			'resource' => 'ideation/friends',
 		],
 		'collection:object:idea:suggested' => [
-			'path' => '/ideation/suggested/{username?}',
+			'path' => '/ideation/suggested/{username}',
 			'resource' => 'ideation/suggested',
 			'middleware' => [
 				Gatekeeper::class,
@@ -62,6 +62,10 @@ return [
 		'collection:object:idea:group' => [
 			'path' => '/ideation/group/{guid}',
 			'resource' => 'ideation/group',
+		],
+		'collection:object:idea:group:suggested' => [
+			'path' => '/ideation/group/{guid}/suggested',
+			'resource' => 'ideation/suggested',
 		],
 		'default:object:idea' => [
 			'path' => '/ideation',

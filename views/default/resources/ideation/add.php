@@ -6,12 +6,11 @@ elgg_entity_gatekeeper($guid);
 
 $container = get_entity($guid);
 
-if (!$container->canWriteToContainer(0, 'object', 'idea')) {
+if (!$container->canWriteToContainer(0, 'object', Idea::SUBTYPE)) {
 	throw new \Elgg\EntityPermissionsException();
 }
 
 elgg_push_collection_breadcrumbs('object', 'idea', $container);
-elgg_push_breadcrumb(elgg_echo('add'));
 
 $title = elgg_echo('ideation:add:title');
 

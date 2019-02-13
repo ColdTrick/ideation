@@ -39,7 +39,7 @@ class Bootstrap extends DefaultPluginBootstrap {
 	protected function initRegisterEvents() {
 		$events = $this->elgg()->events;
 		
-		$events->registerHandler('create', 'object', '\ColdTrick\Ideation\Questions::createQuestion');
+		$events->registerHandler('create', 'object', __NAMESPACE__ . '\Questions::createQuestion');
 	}
 	
 	/**
@@ -50,29 +50,29 @@ class Bootstrap extends DefaultPluginBootstrap {
 	protected function initRegisterHooks() {
 		$hooks = $this->elgg()->hooks;
 		
-		$hooks->registerHandler('entity:url', 'object', '\ColdTrick\Ideation\Widgets::getTitleURLs');
-		$hooks->registerHandler('prepare', 'notification:create:object:' . \Idea::SUBTYPE, '\ColdTrick\Ideation\Notifications::prepareCreateNotification');
-		$hooks->registerHandler('get', 'subscriptions', '\ColdTrick\Ideation\Notifications::addIdeaOwnerToQuestionSubscribers');
-		$hooks->registerHandler('prepare', 'notification:create:object:question', '\ColdTrick\Ideation\Notifications::prepareQuestionNotificationForIdeaOwner');
-		$hooks->registerHandler('get', 'subscriptions', '\ColdTrick\Ideation\Notifications::addIdeaOwnerToAnswerSubscribers');
-		$hooks->registerHandler('prepare', 'notification:create:object:answer', '\ColdTrick\Ideation\Notifications::prepareAnswerNotificationForIdeaOwner');
-		$hooks->registerHandler('container_logic_check', 'object', '\ColdTrick\Ideation\Permissions::containerLogicCheck');
-		$hooks->registerHandler('container_permissions_check', 'object', '\ColdTrick\Ideation\Permissions::ideaContainerPermissions');
-		$hooks->registerHandler('container_permissions_check', 'object', '\ColdTrick\Ideation\Questions::canAskLinkedQuestion');
+		$hooks->registerHandler('container_logic_check', 'object', __NAMESPACE__ . '\Permissions::containerLogicCheck');
+		$hooks->registerHandler('container_permissions_check', 'object', __NAMESPACE__ . '\Permissions::ideaContainerPermissions');
+		$hooks->registerHandler('container_permissions_check', 'object', __NAMESPACE__ . '\Questions::canAskLinkedQuestion');
+		$hooks->registerHandler('entity:url', 'object', __NAMESPACE__ . '\Widgets::getTitleURLs');
+		$hooks->registerHandler('entity:url', 'object', __NAMESPACE__ . '\Questions::getTitleURLs');
+		$hooks->registerHandler('export_value', 'csv_exporter', __NAMESPACE__ . '\CSVExporter::exportValue');
+		$hooks->registerHandler('filter_tabs', 'ideation', __NAMESPACE__ . '\Menus::registerFilterMenuItemSuggested');
+		$hooks->registerHandler('get', 'subscriptions', __NAMESPACE__ . '\Notifications::addIdeaOwnerToAnswerSubscribers');
+		$hooks->registerHandler('get', 'subscriptions', __NAMESPACE__ . '\Notifications::addIdeaOwnerToQuestionSubscribers');
+		$hooks->registerHandler('get_exportable_values', 'csv_exporter', __NAMESPACE__ . '\CSVExporter::exportableValues');
+		$hooks->registerHandler('get_exportable_values:group', 'csv_exporter', __NAMESPACE__ . '\CSVExporter::exportableGroupValues');
+		$hooks->registerHandler('handlers', 'widgets', __NAMESPACE__ . '\Questions::registerSuggestedQuestionsWidget');
 		$hooks->registerHandler('likes:is_likable', 'object:' . \Idea::SUBTYPE, '\Elgg\Values::getTrue');
-		$hooks->registerHandler('register', 'menu:entity', '\ColdTrick\Ideation\Menus::registerEntityMenuDeleteConfirm');
-		$hooks->registerHandler('register', 'menu:filter', '\ColdTrick\Ideation\Menus::registerFilterMenuItemSuggested');
-		$hooks->registerHandler('register', 'menu:owner_block', '\ColdTrick\Ideation\Groups::registerGroupToolMenuItem');
-		$hooks->registerHandler('register', 'menu:site', '\ColdTrick\Ideation\Menus::registerSiteMenuItem');
-		$hooks->registerHandler('tool_options', 'group', '\ColdTrick\Ideation\Groups::registerGroupToolOption');
-		$hooks->registerHandler('get_exportable_values', 'csv_exporter', '\ColdTrick\Ideation\CSVExporter::exportableValues');
-		$hooks->registerHandler('get_exportable_values:group', 'csv_exporter', '\ColdTrick\Ideation\CSVExporter::exportableGroupValues');
-		$hooks->registerHandler('export_value', 'csv_exporter', '\ColdTrick\Ideation\CSVExporter::exportValue');
-		$hooks->registerHandler('view_vars', 'resources/questions/view', '\ColdTrick\Ideation\Questions::registerQuestionExtend');
-		$hooks->registerHandler('view_vars', 'river/object/question/create', '\ColdTrick\Ideation\Questions::questionRiverAttachment');
-		$hooks->registerHandler('view_vars', 'forms/object/question/save', '\ColdTrick\Ideation\Questions::questionFormViewVars');
-		$hooks->registerHandler('handlers', 'widgets', '\ColdTrick\Ideation\Questions::registerSuggestedQuestionsWidget');
-		$hooks->registerHandler('entity:url', 'object', '\ColdTrick\Ideation\Questions::getTitleURLs');
-		$hooks->registerHandler('supported_content', 'widgets:content_by_tag', '\ColdTrick\Ideation\WidgetPack::contentByTagSubtype');
+		$hooks->registerHandler('prepare', 'notification:create:object:' . \Idea::SUBTYPE, __NAMESPACE__ . '\Notifications::prepareCreateNotification');
+		$hooks->registerHandler('prepare', 'notification:create:object:question', __NAMESPACE__ . '\Notifications::prepareQuestionNotificationForIdeaOwner');
+		$hooks->registerHandler('prepare', 'notification:create:object:answer', __NAMESPACE__ . '\Notifications::prepareAnswerNotificationForIdeaOwner');
+		$hooks->registerHandler('register', 'menu:entity', __NAMESPACE__ . '\Menus::registerEntityMenuDeleteConfirm');
+		$hooks->registerHandler('register', 'menu:owner_block', __NAMESPACE__ . '\Groups::registerGroupToolMenuItem');
+		$hooks->registerHandler('register', 'menu:site', __NAMESPACE__ . '\Menus::registerSiteMenuItem');
+		$hooks->registerHandler('supported_content', 'widgets:content_by_tag', __NAMESPACE__ . '\WidgetPack::contentByTagSubtype');
+		$hooks->registerHandler('tool_options', 'group', __NAMESPACE__ . '\Groups::registerGroupToolOption');
+		$hooks->registerHandler('view_vars', 'resources/questions/view', __NAMESPACE__ . '\Questions::registerQuestionExtend');
+		$hooks->registerHandler('view_vars', 'river/object/question/create', __NAMESPACE__ . '\Questions::questionRiverAttachment');
+		$hooks->registerHandler('view_vars', 'forms/object/question/save', __NAMESPACE__ . '\Questions::questionFormViewVars');
 	}
 }

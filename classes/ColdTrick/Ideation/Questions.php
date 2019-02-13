@@ -38,8 +38,12 @@ class Questions {
 		
 		elgg_register_menu_item('title', [
 			'name' => 'add_question',
+			'icon' => 'plus',
 			'text' => elgg_echo('questions:add'),
-			'href' => "questions/add/{$container->guid}?idea_guid={$entity->guid}",
+			'href' => elgg_generate_url('add:object:question', [
+				'guid' => $container->guid,
+				'idea_guid' => $entity->guid,
+			]),
 			'link_class' => 'elgg-button elgg-button-action',
 		]);
 	}
@@ -98,7 +102,7 @@ class Questions {
 		}
 		
 		$idea = get_entity($idea_guid);
-		if (!($idea instanceof \Idea)) {
+		if (!$idea instanceof \Idea) {
 			return;
 		}
 		
@@ -133,12 +137,12 @@ class Questions {
 	public static function questionRiverAttachment($hook, $type, $return_value, $params) {
 		
 		$item = elgg_extract('item', $return_value);
-		if (!($item instanceof \ElggRiverItem)) {
+		if (!$item instanceof \ElggRiverItem) {
 			return;
 		}
 		
 		$object = $item->getObjectEntity();
-		if (!($object instanceof \ElggQuestion)) {
+		if (!$object instanceof \ElggQuestion) {
 			return;
 		}
 		
@@ -180,7 +184,7 @@ class Questions {
 		}
 		
 		$idea = get_entity($idea_guid);
-		if (!($idea instanceof \Idea)) {
+		if (!$idea instanceof \Idea) {
 			return;
 		}
 		
@@ -256,7 +260,7 @@ class Questions {
 		}
 		
 		$entity = elgg_extract('entity', $params);
-		if (!($entity instanceof \ElggWidget)) {
+		if (!$entity instanceof \ElggWidget) {
 			return;
 		}
 		
@@ -264,12 +268,16 @@ class Questions {
 			case 'ideation_suggested_questions':
 				
 				if ($entity->getOwnerEntity() instanceof \ElggGroup) {
-					return "ideation/group/{$entity->owner_guid}/suggested";
+					return elgg_generate_url('collection:object:idea:group:suggested', [
+						'guid' => $entity->owner_guid,
+					]);
 				}
 				
 				$user = elgg_get_logged_in_user_entity();
 				if (!empty($user)) {
-					return "ideation/suggested/{$user->username}";
+					return elgg_generate_url('collection:object:idea:suggested', [
+						'username' => $user->username,
+					]);
 				}
 				break;
 		}
@@ -299,11 +307,11 @@ class Questions {
 		
 		$user = elgg_extract('user', $params);
 		$container = elgg_extract('container', $params);
-		if (!($user instanceof \ElggUser) || !($container instanceof \ElggGroup)) {
+		if (!$user instanceof \ElggUser || !$container instanceof \ElggGroup) {
 			return;
 		}
 		
-		if ($return_value || ($container->questions_enable !== 'yes') || !$container->canWriteToContainer($user->guid, 'object', \Idea::SUBTYPE)) {
+		if ($return_value || $container->isToolEnabled('questions') || !$container->canWriteToContainer($user->guid, 'object', \Idea::SUBTYPE)) {
 			// already allowed, questions not enabled or not allowed to create Idea
 			return;
 		}
@@ -314,7 +322,7 @@ class Questions {
 		}
 		
 		$idea = get_entity($idea_guid);
-		if (!($idea instanceof \Idea)) {
+		if (!$idea instanceof \Idea) {
 			return;
 		}
 		
