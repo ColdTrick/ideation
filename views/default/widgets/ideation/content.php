@@ -28,12 +28,6 @@ if ($sort === 'time_updated') {
 	$options['order_by'] = 'e.time_updated DESC';
 }
 
-// listing view
-$listing = $widget->listing;
-if ($listing === 'image') {
-	$options['item_view'] = 'object/idea/widget_image';
-}
-
 // container limiter
 if ($widget->getOwnerEntity() instanceof ElggGroup) {
 	$options['container_guid'] = $widget->owner_guid;

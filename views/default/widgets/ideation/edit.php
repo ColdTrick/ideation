@@ -29,18 +29,6 @@ echo elgg_view_field([
 	],
 ]);
 
-// listing view
-echo elgg_view_field([
-	'#type' => 'select',
-	'#label' => elgg_echo('widgets:ideation:listing'),
-	'name' => 'params[listing]',
-	'value' => $widget->listing,
-	'options_values' => [
-		'default' => elgg_echo('widgets:ideation:listing:default'),
-		'image' => elgg_echo('widgets:ideation:listing:image'),
-	],
-]);
-
 // container selector
 if (!$widget->getOwnerEntity() instanceof ElggGroup) {
 	echo elgg_view_field([

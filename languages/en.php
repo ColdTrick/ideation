@@ -130,9 +130,6 @@ To view the answer, click here:
 	'widgets:ideation:description' => "List ideas with different selection options",
 	'widgets:ideation:status' => "Idea status",
 	'widgets:ideation:sort:updated' => "Last updated",
-	'widgets:ideation:listing' => "Listing view",
-	'widgets:ideation:listing:default' => "Normal content listing",
-	'widgets:ideation:listing:image' => "Image listing",
 	
 	// actions
 	'ideation:action:edit:success' => "Your idea was saved successfully",
