@@ -37,6 +37,7 @@ return [
 	
 	// river
 	'river:object:idea:create' => "%s posted a new idea %s",
+	'river:object:idea:comment' => "%s commented on the idea %s",
 	'ideation:river:object:question:attachment' => 'Asked on the idea: %s',
 	
 	// menus

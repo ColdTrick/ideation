@@ -26,6 +26,7 @@ return array (
   'ideation:group_tool_option:label' => 'Groep ideation inschakelen',
   'ideation:group_tool_option:description' => 'Stel groepsleden in staat om ideeën te delen en te realiseren',
   'river:object:idea:create' => '%s heeft een nieuw idee %s toegevoegd',
+  'river:object:idea:comment' => "%s reageerde op het idee %s",
   'ideation:river:object:question:attachment' => 'Gesteld bij het idee: %s',
   'ideation:menu:owner_block:groups' => 'Groep ideation',
   'ideation:menu:site:all' => 'Ideation',
