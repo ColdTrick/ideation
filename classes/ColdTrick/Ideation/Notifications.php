@@ -3,7 +3,7 @@
 namespace ColdTrick\Ideation;
 
 use \Elgg\Notifications\Notification;
-use \Elgg\Notifications\Event;
+use \Elgg\Notifications\NotificationEvent;
 
 class Notifications {
 	
@@ -19,7 +19,7 @@ class Notifications {
 	 */
 	public static function prepareCreateNotification($hook, $type, $return_value, $params) {
 		
-		if (!($return_value instanceof Notification)) {
+		if (!$return_value instanceof Notification) {
 			return;
 		}
 		
@@ -27,14 +27,14 @@ class Notifications {
 		$recipient = elgg_extract('recipient', $params);
 		$language = elgg_extract('language', $params);
 		
-		if (!($event instanceof Event) || !($recipient instanceof \ElggUser)) {
+		if (!$event instanceof NotificationEvent || !$recipient instanceof \ElggUser) {
 			return;
 		}
 		
 		$object = $event->getObject();
 		$actor = $event->getActor();
 		
-		if (!($object instanceof \Idea) || !($actor instanceof \ElggUser)) {
+		if (!$object instanceof \Idea || !$actor instanceof \ElggUser) {
 			return;
 		}
 		
@@ -62,7 +62,7 @@ class Notifications {
 	 */
 	public static function addIdeaOwnerToQuestionSubscribers($hook, $type, $return_value, $params) {
 		
-		/* @var $event \Elgg\Notifications\Event */
+		/* @var $event \Elgg\Notifications\NotificationEvent */
 		$event = elgg_extract('event', $params);
 		if (!self::validateQuestionNotificationEvent($event)) {
 			return;
@@ -110,16 +110,16 @@ class Notifications {
 	 */
 	public static function prepareQuestionNotificationForIdeaOwner($hook, $type, $return_value, $params) {
 		
-		if (!($return_value instanceof Notification)) {
+		if (!$return_value instanceof Notification) {
 			return;
 		}
 		
-		/* @var $event \Elgg\Notifications\Event */
+		/* @var $event \Elgg\Notifications\NotificationEvent */
 		$event = elgg_extract('event', $params);
 		$recipient = elgg_extract('recipient', $params);
 		$language = elgg_extract('language', $params);
 		
-		if (!self::validateQuestionNotificationEvent($event) || !($recipient instanceof \ElggUser)) {
+		if (!self::validateQuestionNotificationEvent($event) || !$recipient instanceof \ElggUser) {
 			return;
 		}
 		
@@ -163,7 +163,7 @@ class Notifications {
 	 */
 	public static function addIdeaOwnerToAnswerSubscribers($hook, $type, $return_value, $params) {
 		
-		/* @var $event \Elgg\Notifications\Event */
+		/* @var $event \Elgg\Notifications\NotificationEvent */
 		$event = elgg_extract('event', $params);
 		if (!self::validateAnswerNotificationEvent($event)) {
 			return;
@@ -213,16 +213,16 @@ class Notifications {
 	 */
 	public static function prepareAnswerNotificationForIdeaOwner($hook, $type, $return_value, $params) {
 		
-		if (!($return_value instanceof Notification)) {
+		if (!$return_value instanceof Notification) {
 			return;
 		}
 		
-		/* @var $event \Elgg\Notifications\Event */
+		/* @var $event \Elgg\Notifications\NotificationEvent */
 		$event = elgg_extract('event', $params);
 		$recipient = elgg_extract('recipient', $params);
 		$language = elgg_extract('language', $params);
 		
-		if (!self::validateAnswerNotificationEvent($event) || !($recipient instanceof \ElggUser)) {
+		if (!self::validateAnswerNotificationEvent($event) || !$recipient instanceof \ElggUser) {
 			return;
 		}
 		
@@ -259,7 +259,7 @@ class Notifications {
 	/**
 	 * Validate that a notification object is about a question
 	 *
-	 * @param \Elgg\Notifications\Event $event the event to check
+	 * @param \Elgg\Notifications\NotificationEvent $event the event to check
 	 *
 	 * @return bool
 	 */
@@ -270,13 +270,13 @@ class Notifications {
 			return false;
 		}
 		
-		if (!($event instanceof Event)) {
+		if (!$event instanceof NotificationEvent) {
 			return false;
 		}
 		
 		$action = $event->getAction();
 		$object = $event->getObject();
-		if (($action !== 'create') || !($object instanceof \ElggQuestion)) {
+		if ($action !== 'create' || !$object instanceof \ElggQuestion) {
 			// not create question
 			return false;
 		}
@@ -287,7 +287,7 @@ class Notifications {
 	/**
 	 * Validate that a notification object is about an answer
 	 *
-	 * @param \Elgg\Notifications\Event $event the event to check
+	 * @param \Elgg\Notifications\NotificationEvent $event the event to check
 	 *
 	 * @return bool
 	 */
@@ -298,13 +298,13 @@ class Notifications {
 			return false;
 		}
 		
-		if (!($event instanceof Event)) {
+		if (!$event instanceof NotificationEvent) {
 			return false;
 		}
 		
 		$action = $event->getAction();
 		$object = $event->getObject();
-		if (($action !== 'create') || !($object instanceof \ElggAnswer)) {
+		if ($action !== 'create' || !$object instanceof \ElggAnswer) {
 			// not create answer
 			return false;
 		}
