@@ -1,6 +1,13 @@
 Version history
 ===============
 
+2.0 (2019-03-27):
+
+- changed: increased minimal requirements to Elgg 3.0
+- changed: moved start into plugin bootstrap class and elgg-plugin.php
+- fixed: routing problems
+- removed: no longer provide custom listing view for ideas in a widget
+
 1.4 (2018-10-18):
 
 - added: plugin settings for comments and questions integration
