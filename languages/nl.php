@@ -1,10 +1,11 @@
 <?php
 /**
- * This file was created by Translation Editor v6.1
- * On 2018-10-08 11:51
+ * This file was created by Translation Editor v7.0-beta
+ * On 2019-03-27 11:32
  */
 
 return array (
+  'collection:object:idea' => 'Ideeën',
   'ideation:settings:enable_comments' => 'Schakel reacties op Ideeën in',
   'ideation:settings:enable_comments:help' => 'Indien dit is ingeschakeld kunnen gebruikers reacties achterlaten op Ideeën',
   'ideation:settings:questions:title' => 'Questions plugin integratie',
@@ -26,7 +27,7 @@ return array (
   'ideation:group_tool_option:label' => 'Groep ideation inschakelen',
   'ideation:group_tool_option:description' => 'Stel groepsleden in staat om ideeën te delen en te realiseren',
   'river:object:idea:create' => '%s heeft een nieuw idee %s toegevoegd',
-  'river:object:idea:comment' => "%s reageerde op het idee %s",
+  'river:object:idea:comment' => '%s reageerde op het idee %s',
   'ideation:river:object:question:attachment' => 'Gesteld bij het idee: %s',
   'ideation:menu:owner_block:groups' => 'Groep ideation',
   'ideation:menu:site:all' => 'Ideation',
