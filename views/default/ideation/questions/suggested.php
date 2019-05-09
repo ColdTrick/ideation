@@ -5,6 +5,8 @@
  * @uses $vars['options'] (optional) additional options to use in ege*
  */
 
+use Elgg\Database\QueryBuilder;
+
 // is profile field configured
 $profile_fields = ideation_get_suggested_questions_profile_fields();
 if (empty($profile_fields)) {
@@ -64,7 +66,9 @@ $defaults = [
 		],
 	],
 	'wheres' => [
-		"e.owner_guid <> {$user->guid}",
+		function (QueryBuilder $qb, $main_alias) use ($user) {
+			return $qb->compare("{$main_alias}.owner_guid", '!=', $user->guid, ELGG_VALUE_GUID);
+		},
 	],
 	'relationship' => Idea::QUESTION_RELATIONSHIP,
 	'inverse_relationship' => true,
