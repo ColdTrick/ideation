@@ -1,6 +1,10 @@
 Version history
 ===============
 
+2.0.1 (2019-05-29):
+
+- fixed: deprecated where clause
+
 2.0 (2019-03-27):
 
 - changed: increased minimal requirements to Elgg 3.0
