@@ -17,14 +17,6 @@ class Idea extends ElggObject {
 	
 	/**
 	 * {@inheritDoc}
-	 * @see ElggEntity::getURL()
-	 */
-	public function getURL() {
-		return elgg_normalize_url("ideation/view/{$this->guid}/" . elgg_get_friendly_title($this->getDisplayName()));
-	}
-	
-	/**
-	 * {@inheritDoc}
 	 * @see ElggObject::canComment()
 	 */
 	public function canComment($user_guid = 0, $default = null) {
