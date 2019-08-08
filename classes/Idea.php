@@ -97,28 +97,26 @@ class Idea extends ElggObject {
 			return 0;
 		}
 		
-		$ia = elgg_set_ignore_access(true);
-		
-		$batch = $this->getEntitiesFromRelationship([
-			'type' => 'object',
-			'subtype' => ElggQuestion::SUBTYPE,
-			'relationship' => self::QUESTION_RELATIONSHIP,
-			'inverse_relationship' => true,
-			'limit' => false,
-			'batch' => true,
-			'batch_inc_offset' => false,
-		]);
-		
-		$result = 0;
-		/* @var $question ElggQuestion */
-		foreach ($batch as $question) {
-			if ($question->delete()) {
-				$result++;
+		return elgg_call(ELGG_IGNORE_ACCESS, function() {
+			$batch = $this->getEntitiesFromRelationship([
+				'type' => 'object',
+				'subtype' => ElggQuestion::SUBTYPE,
+				'relationship' => self::QUESTION_RELATIONSHIP,
+				'inverse_relationship' => true,
+				'limit' => false,
+				'batch' => true,
+				'batch_inc_offset' => false,
+			]);
+			
+			$result = 0;
+			/* @var $question ElggQuestion */
+			foreach ($batch as $question) {
+				if ($question->delete()) {
+					$result++;
+				}
 			}
-		}
-		
-		elgg_set_ignore_access($ia);
-		
-		return $result;
+			
+			return $result;
+		});
 	}
 }
