@@ -7,16 +7,13 @@ class CSVExporter {
 	/**
 	 * Configure exportable values for CSV Exporter
 	 *
-	 * @param string $hook   'get_exportable_values'
-	 * @param string $type   'csv_exporter'
-	 * @param array  $return current return value
-	 * @param array  $params supplied params
+	 * @param \Elgg\Hook $hook 'get_exportable_values', 'csv_exporter'
 	 *
 	 * @return void|array
 	 */
-	public static function exportableValues($hook, $type, $return, $params) {
+	public static function exportableValues(\Elgg\Hook $hook) {
 		
-		if (elgg_extract('subtype', $params) !== \Idea::SUBTYPE) {
+		if ($hook->getParam('subtype') !== \Idea::SUBTYPE) {
 			return;
 		}
 		
@@ -26,26 +23,23 @@ class CSVExporter {
 			elgg_echo('ideation:problem:question') => 'problem',
 		];
 		
-		if (!(bool) elgg_extract('readable', $params)) {
+		if (!(bool) $hook->getParam('readable')) {
 			$values = array_values($values);
 		}
 		
-		return array_merge($return, $values);
+		return array_merge($hook->getValue(), $values);
 	}
 	
 	/**
 	 * Configure exportable group values for CSV Exporter
 	 *
-	 * @param string $hook   'get_exportable_values:group'
-	 * @param string $type   'csv_exporter'
-	 * @param array  $return current return value
-	 * @param array  $params supplied params
+	 * @param \Elgg\Hook $hook 'get_exportable_values:group', 'csv_exporter'
 	 *
 	 * @return void|array
 	 */
-	public static function exportableGroupValues($hook, $type, $return, $params) {
+	public static function exportableGroupValues(\Elgg\Hook $hook) {
 		
-		if (elgg_extract('subtype', $params) !== \Idea::SUBTYPE) {
+		if ($hook->getParam('subtype') !== \Idea::SUBTYPE) {
 			return;
 		}
 		
@@ -55,32 +49,29 @@ class CSVExporter {
 			'problem',
 		];
 		
-		return array_merge($return, $values);
+		return array_merge($hook->getValue(), $values);
 	}
 	
 	/**
 	 * Export a value from Ideation
 	 *
-	 * @param string $hook   'export_value'
-	 * @param string $type   'csv_exporter'
-	 * @param array  $return current return value
-	 * @param array  $params supplied params
+	 * @param \Elgg\Hook $hook 'export_value', 'csv_exporter'
 	 *
 	 * @return void|string
 	 */
-	public static function exportValue($hook, $type, $return, $params) {
+	public static function exportValue(\Elgg\Hook $hook) {
 		
-		if (!is_null($return)) {
+		if (!is_null($hook->getValue())) {
 			// someone already provided output
 			return;
 		}
 		
-		$entity = elgg_extract('entity', $params);
-		if (!($entity instanceof \Idea)) {
+		$entity = $hook->getEntityParam();
+		if (!$entity instanceof \Idea) {
 			return;
 		}
 		
-		switch (elgg_extract('exportable_value', $params)) {
+		switch ($hook->getParam('exportable_value')) {
 			case 'ideation_status':
 				return elgg_echo("ideation:status:{$entity->status}");
 		}

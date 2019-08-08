@@ -51,15 +51,13 @@ class Questions {
 	/**
 	 * Listen to the create event of a question
 	 *
-	 * @param string        $event
-	 * @param string        $type
-	 * @param \ElggQuestion $entity
+	 * @param \Elgg\Event $event 'create', 'object'
 	 *
 	 * @return void
 	 */
-	public static function createQuestion($event, $type, $entity) {
-		
-		if (!($entity instanceof \ElggQuestion)) {
+	public static function createQuestion(\Elgg\Event $event) {
+		$entity = $event->getObject();
+		if (!$entity instanceof \ElggQuestion) {
 			return;
 		}
 		
@@ -83,14 +81,11 @@ class Questions {
 	/**
 	 * Forward to the Idea after linking a Question and Idea
 	 *
-	 * @param string $hook         the name of the hook
-	 * @param string $type         the type of the hook
-	 * @param array  $return_value current return value
-	 * @param mixed  $params       supplied params
+	 * @param \Elgg\Hook $hook 'forward', 'system'
 	 *
 	 * @return void|array
 	 */
-	public static function forwardAfterCreate($hook, $type, $return_value, $params) {
+	public static function forwardAfterCreate(\Elgg\Hook $hook) {
 		
 		if (!elgg_in_context('action')) {
 			return;
@@ -112,14 +107,11 @@ class Questions {
 	/**
 	 * Register the extend to view related idea on a question page
 	 *
-	 * @param string $hook         the name of the hook
-	 * @param string $type         the type of the hook
-	 * @param array  $return_value current return value
-	 * @param mixed  $params       supplied params
+	 * @param \Elgg\Hook $hook 'view_vars', 'resources/questions/view'
 	 *
 	 * @return void
 	 */
-	public static function registerQuestionExtend($hook, $type, $return_value, $params) {
+	public static function registerQuestionExtend(\Elgg\Hook $hook) {
 		
 		elgg_extend_view('object/question', 'ideation/questions/idea');
 	}
@@ -127,15 +119,12 @@ class Questions {
 	/**
 	 * Add an attachment link to the question river item (if linked)
 	 *
-	 * @param string $hook         the name of the hook
-	 * @param string $type         the type of the hook
-	 * @param array  $return_value current return value
-	 * @param mixed  $params       supplied params
+	 * @param \Elgg\Hook $hook 'view_vars', 'river/object/question/create'
 	 *
 	 * @return void|array
 	 */
-	public static function questionRiverAttachment($hook, $type, $return_value, $params) {
-		
+	public static function questionRiverAttachment(\Elgg\Hook $hook) {
+		$return_value = $hook->getValue();
 		$item = elgg_extract('item', $return_value);
 		if (!$item instanceof \ElggRiverItem) {
 			return;
@@ -165,14 +154,11 @@ class Questions {
 	/**
 	 * Extend view vars for question edit form
 	 *
-	 * @param string $hook         the name of the hook
-	 * @param string $type         the type of the hook
-	 * @param array  $return_value current return value
-	 * @param mixed  $params       supplied params
+	 * @param \Elgg\Hook $hook 'view_vars', 'forms/object/question/save'
 	 *
 	 * @return void|array
 	 */
-	public static function questionFormViewVars($hook, $type, $return_value, $params) {
+	public static function questionFormViewVars(\Elgg\Hook $hook) {
 		
 		if (!ideation_questions_integration_enabled()) {
 			return;
@@ -188,6 +174,7 @@ class Questions {
 			return;
 		}
 		
+		$return_value = $hook->getValue();
 		$return_value['idea_guid'] = $idea->guid;
 		if (empty($return_value['tags'])) {
 			// prefill (question) tags with the tags of the idea
@@ -200,14 +187,11 @@ class Questions {
 	/**
 	 * Register the suggested questions widget
 	 *
-	 * @param string $hook         the name of the hook
-	 * @param string $type         the type of the hook
-	 * @param array  $return_value current return value
-	 * @param mixed  $params       supplied params
+	 * @param \Elgg\Hook $hook 'handlers', 'widgets'
 	 *
 	 * @return void|array
 	 */
-	public static function registerSuggestedQuestionsWidget($hook, $type, $return_value, $params) {
+	public static function registerSuggestedQuestionsWidget(\Elgg\Hook $hook) {
 		
 		if (!elgg_is_logged_in()) {
 			// only for logged in users
@@ -237,6 +221,7 @@ class Questions {
 			return;
 		}
 		
+		$return_value = $hook->getValue();
 		$return_value[] = $widget;
 		
 		return $return_value;
@@ -245,21 +230,18 @@ class Questions {
 	/**
 	 * Return a correct link for suggested_questions widget
 	 *
-	 * @param string $hook         the name of the hook
-	 * @param string $type         the type of the hook
-	 * @param mixed  $return_value current return value
-	 * @param mixed  $params       supplied params
+	 * @param \Elgg\Hook $hook 'entity:url', 'object'
 	 *
 	 * @return void|string
 	 */
-	public static function getTitleURLs($hook, $type, $return_value, $params) {
+	public static function getTitleURLs(\Elgg\Hook $hook) {
 		
-		if (!empty($return_value)) {
+		if (!empty($hook->getValue())) {
 			// url already set
 			return;
 		}
 		
-		$entity = elgg_extract('entity', $params);
+		$entity = $hook->getEntityParam();
 		if (!$entity instanceof \ElggWidget) {
 			return;
 		}
@@ -286,32 +268,29 @@ class Questions {
 	/**
 	 * Can a question be asked if linked to idea
 	 *
-	 * @param string $hook         the name of the hook
-	 * @param string $type         the type of the hook
-	 * @param bool   $return_value current return value
-	 * @param array  $params       supplied params
+	 * @param \Elgg\Hook $hook 'container_permissions_check', 'object'
 	 *
 	 * @return void|true
 	 */
-	public static function canAskLinkedQuestion($hook, $type, $return_value, $params) {
+	public static function canAskLinkedQuestion(\Elgg\Hook $hook) {
 		
 		if (!ideation_questions_integration_enabled()) {
 			// plugin not active
 			return;
 		}
 		
-		$subtype = elgg_extract('subtype', $params);
+		$subtype = $hook->getParam('subtype');
 		if ($subtype !== \ElggQuestion::SUBTYPE) {
 			return;
 		}
 		
-		$user = elgg_extract('user', $params);
-		$container = elgg_extract('container', $params);
+		$user = $hook->getUserParam();
+		$container = $hook->getParam('container');
 		if (!$user instanceof \ElggUser || !$container instanceof \ElggGroup) {
 			return;
 		}
 		
-		if ($return_value || $container->isToolEnabled('questions') || !$container->canWriteToContainer($user->guid, 'object', \Idea::SUBTYPE)) {
+		if ($hook->getValue() || $container->isToolEnabled('questions') || !$container->canWriteToContainer($user->guid, 'object', \Idea::SUBTYPE)) {
 			// already allowed, questions not enabled or not allowed to create Idea
 			return;
 		}

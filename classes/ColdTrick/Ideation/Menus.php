@@ -10,15 +10,12 @@ class Menus {
 	/**
 	 * Register the site menu item
 	 *
-	 * @param string          $hook         the name of the hook
-	 * @param string          $type         the type of the hook
-	 * @param \ElggMenuItem[] $return_value current return value
-	 * @param array           $params       supplied params
+	 * @param \Elgg\Hook $hook 'register', 'menu:site'
 	 *
 	 * @return void|\ElggMenuItem[]
 	 */
-	public static function registerSiteMenuItem($hook, $type, $return_value, $params) {
-		
+	public static function registerSiteMenuItem(\Elgg\Hook $hook) {
+		$return_value = $hook->getValue();
 		$return_value[] = \ElggMenuItem::factory([
 			'name' => 'ideation',
 			'icon' => 'lightbulb-regular',
@@ -98,20 +95,18 @@ class Menus {
 	/**
 	 * Alter the confirm text on an Idea delete
 	 *
-	 * @param string          $hook         the name of the hook
-	 * @param string          $type         the type of the hook
-	 * @param \ElggMenuItem[] $return_value current return value
-	 * @param array           $params       supplied params
+	 * @param \Elgg\Hook $hook 'register', 'menu:entity'
 	 *
 	 * @return void|\ElggMenuItem[]
 	 */
-	public static function registerEntityMenuDeleteConfirm($hook, $type, $return_value, $params) {
+	public static function registerEntityMenuDeleteConfirm(\Elgg\Hook $hook) {
 		
-		$entity = elgg_extract('entity', $params);
+		$entity = $hook->getEntityParam();
 		if (!$entity instanceof \Idea || !$entity->canDelete()) {
 			return;
 		}
 		
+		$return_value = $hook->getValue();
 		foreach ($return_value as $menu_item) {
 			if ($menu_item->getName() !== 'delete') {
 				continue;

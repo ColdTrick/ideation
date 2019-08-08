@@ -10,22 +10,20 @@ class Notifications {
 	/**
 	 * Make the create notification for an idea
 	 *
-	 * @param string                           $hook         the name of the hook
-	 * @param string                           $type         the type of the hook
-	 * @param \Elgg\Notifications\Notification $return_value current return value
-	 * @param array                            $params       supplied params
+	 * @param \Elgg\Hook $hook 'prepare', 'notification:create:object:idea'
 	 *
 	 * @return void|\Elgg\Notifications\Notification
 	 */
-	public static function prepareCreateNotification($hook, $type, $return_value, $params) {
+	public static function prepareCreateNotification(\Elgg\Hook $hook) {
 		
+		$return_value = $hook->getValue();
 		if (!$return_value instanceof Notification) {
 			return;
 		}
 		
-		$event = elgg_extract('event', $params);
-		$recipient = elgg_extract('recipient', $params);
-		$language = elgg_extract('language', $params);
+		$event = $hook->getParam('event');
+		$recipient = $hook->getParam('recipient');
+		$language = $hook->getParam('language');
 		
 		if (!$event instanceof NotificationEvent || !$recipient instanceof \ElggUser) {
 			return;
@@ -53,17 +51,14 @@ class Notifications {
 	/**
 	 * Add the idea owner to question subscribers if linked
 	 *
-	 * @param string $hook         the name of the hook
-	 * @param string $type         the type of the hook
-	 * @param array  $return_value current return value
-	 * @param array  $params       supplied params
+	 * @param \Elgg\Hook $hook 'get', 'subscriptions'
 	 *
 	 * @return void|array
 	 */
-	public static function addIdeaOwnerToQuestionSubscribers($hook, $type, $return_value, $params) {
+	public static function addIdeaOwnerToQuestionSubscribers(\Elgg\Hook $hook) {
 		
 		/* @var $event \Elgg\Notifications\NotificationEvent */
-		$event = elgg_extract('event', $params);
+		$event = $hook->getParam('event');
 		if (!self::validateQuestionNotificationEvent($event)) {
 			return;
 		}
@@ -93,6 +88,7 @@ class Notifications {
 			return;
 		}
 		
+		$return_value = $hook->getValue();
 		$return_value[$owner->guid] = $res;
 		
 		return $return_value;
@@ -101,23 +97,20 @@ class Notifications {
 	/**
 	 * Make the create notification for an idea
 	 *
-	 * @param string                           $hook         the name of the hook
-	 * @param string                           $type         the type of the hook
-	 * @param \Elgg\Notifications\Notification $return_value current return value
-	 * @param array                            $params       supplied params
+	 * @param \Elgg\Hook $hook 'prepare', 'notification:create:object:question'
 	 *
 	 * @return void|\Elgg\Notifications\Notification
 	 */
-	public static function prepareQuestionNotificationForIdeaOwner($hook, $type, $return_value, $params) {
-		
+	public static function prepareQuestionNotificationForIdeaOwner(\Elgg\Hook $hook) {
+		$return_value = $hook->getValue();
 		if (!$return_value instanceof Notification) {
 			return;
 		}
 		
 		/* @var $event \Elgg\Notifications\NotificationEvent */
-		$event = elgg_extract('event', $params);
-		$recipient = elgg_extract('recipient', $params);
-		$language = elgg_extract('language', $params);
+		$event = $hook->getParam('event');
+		$recipient = $hook->getParam('recipient');
+		$language = $hook->getParam('language');
 		
 		if (!self::validateQuestionNotificationEvent($event) || !$recipient instanceof \ElggUser) {
 			return;
@@ -154,17 +147,14 @@ class Notifications {
 	/**
 	 * Add the idea owner to answer subscribers if linked
 	 *
-	 * @param string $hook         the name of the hook
-	 * @param string $type         the type of the hook
-	 * @param array  $return_value current return value
-	 * @param array  $params       supplied params
+	 * @param \Elgg\Hook $hook 'get', 'subscriptions'
 	 *
 	 * @return void|array
 	 */
-	public static function addIdeaOwnerToAnswerSubscribers($hook, $type, $return_value, $params) {
+	public static function addIdeaOwnerToAnswerSubscribers(\Elgg\Hook $hook) {
 		
 		/* @var $event \Elgg\Notifications\NotificationEvent */
-		$event = elgg_extract('event', $params);
+		$event = $hook->getParam('event');
 		if (!self::validateAnswerNotificationEvent($event)) {
 			return;
 		}
@@ -196,6 +186,7 @@ class Notifications {
 			return;
 		}
 		
+		$return_value = $hook->getValue();
 		$return_value[$owner->guid] = $res;
 		
 		return $return_value;
@@ -204,23 +195,20 @@ class Notifications {
 	/**
 	 * Make the create notification for an idea
 	 *
-	 * @param string                           $hook         the name of the hook
-	 * @param string                           $type         the type of the hook
-	 * @param \Elgg\Notifications\Notification $return_value current return value
-	 * @param array                            $params       supplied params
+	 * @param \Elgg\Hook $hook 'prepare', 'notification:create:object:answer'
 	 *
 	 * @return void|\Elgg\Notifications\Notification
 	 */
-	public static function prepareAnswerNotificationForIdeaOwner($hook, $type, $return_value, $params) {
-		
+	public static function prepareAnswerNotificationForIdeaOwner(\Elgg\Hook $hook) {
+		$return_value = $hook->getValue();
 		if (!$return_value instanceof Notification) {
 			return;
 		}
 		
 		/* @var $event \Elgg\Notifications\NotificationEvent */
-		$event = elgg_extract('event', $params);
-		$recipient = elgg_extract('recipient', $params);
-		$language = elgg_extract('language', $params);
+		$event = $hook->getParam('event');
+		$recipient = $hook->getParam('recipient');
+		$language = $hook->getParam('language');
 		
 		if (!self::validateAnswerNotificationEvent($event) || !$recipient instanceof \ElggUser) {
 			return;

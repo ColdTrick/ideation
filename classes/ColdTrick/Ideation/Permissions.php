@@ -7,26 +7,23 @@ class Permissions {
 	/**
 	 * Check the container write permissions for ideas
 	 *
-	 * @param string $hook         the name of the hook
-	 * @param string $type         the type of the hook
-	 * @param bool   $return_value current return value
-	 * @param array  $params       supplied params
+	 * @param \Elgg\Hook $hook 'container_permissions_check', 'object'
 	 *
 	 * @return void|false
 	 */
-	public static function ideaContainerPermissions($hook, $type, $return_value, $params) {
+	public static function ideaContainerPermissions(\Elgg\Hook $hook) {
 		
-		$subtype = elgg_extract('subtype', $params);
+		$subtype = $hook->getParam('subtype');
 		if ($subtype !== \Idea::SUBTYPE) {
 			return;
 		}
 		
-		if ($return_value === false) {
+		if ($hook->getValue() === false) {
 			// already not allowed, no further checks needed
 			return;
 		}
 		
-		$container = elgg_extract('container', $params);
+		$container = $hook->getParam('container');
 		
 		if ($container instanceof \ElggUser) {
 			if (elgg_get_plugin_setting('enable_personal', 'ideation') === 'no') {
