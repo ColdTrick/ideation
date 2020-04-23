@@ -19,7 +19,7 @@ if (!ideation_get_suggested_questions_profile_fields()) {
 
 elgg_register_title_button('ideation', 'add', 'object', Idea::SUBTYPE);
 
-elgg_push_collection_breadcrumbs('object', 'idea', $page_owner);
+elgg_push_collection_breadcrumbs('object', Idea::SUBTYPE, $page_owner);
 
 // build page elements
 $title = elgg_echo('ideation:suggested:title');
@@ -30,12 +30,8 @@ $body = elgg_view('ideation/questions/suggested', [
 	],
 ]);
 
-// build page
-$page_data = elgg_view_layout('content', [
-	'title' => $title,
-	'content' => $body,
-	'filter_context' => 'ideation_suggested',
-]);
-
 // draw page
-echo elgg_view_page($title, $page_data);
+echo elgg_view_page($title, [
+	'content' => $body,
+	'filter_value' => 'ideation_suggested',
+]);

@@ -16,12 +16,7 @@ $title = elgg_echo('ideation:edit:title', [$entity->getDisplayName()]);
 $body_vars = ideation_prepare_form_vars($entity);
 $body = elgg_view_form('ideation/edit', [], $body_vars);
 
-// build page
-$page_data = elgg_view_layout('default', [
-	'title' => $title,
-	'content' => $body,
-	'filter' => false,
-]);
-
 // draw page
-echo elgg_view_page($title, $page_data);
+echo elgg_view_page($title, [
+	'content' => $body,
+]);

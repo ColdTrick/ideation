@@ -28,12 +28,8 @@ $body = elgg_list_entities([
 	'no_results' => true,
 ]);
 
-// build page
-$page_data = elgg_view_layout('content', [
-	'title' => $title,
-	'content' => $body,
-	'filter_context' => 'friends',
-]);
-
 // draw page
-echo elgg_view_page($title, $page_data);
+echo elgg_view_page($title, [
+	'content' => $body,
+	'filter_value' => 'friends',
+]);

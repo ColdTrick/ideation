@@ -19,13 +19,8 @@ $body = elgg_view_entity($entity, [
 	'show_responses' => true,
 ]);
 
-// build page
-$page_data = elgg_view_layout('default', [
-	'title' => $title,
+// draw page
+echo elgg_view_page($title, [
 	'content' => $body,
 	'entity' => $entity,
-	'filter' => false,
 ]);
-
-// draw page
-echo elgg_view_page($title, $page_data);

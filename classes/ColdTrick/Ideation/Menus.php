@@ -31,11 +31,11 @@ class Menus {
 	 *
 	 * @param \Elgg\Hook $hook 'filter_tabs', 'ideation'
 	 *
-	 * @return \ElggMenuItem
+	 * @return \ElggMenuItem[]
 	 */
 	public static function registerFilterMenuItemSuggested(\Elgg\Hook $hook) {
 		
-		/* @var $result MenuItems */
+		/* @var $result \ElggMenuItem[] */
 		$result = $hook->getValue();
 		
 		$remove_items = [];

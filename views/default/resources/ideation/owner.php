@@ -8,7 +8,7 @@ if (!$page_owner instanceof ElggUser) {
 	throw new \Elgg\EntityNotFoundException();
 }
 
-elgg_push_collection_breadcrumbs('object', 'idea', $page_owner);
+elgg_push_collection_breadcrumbs('object', Idea::SUBTYPE, $page_owner);
 
 elgg_register_title_button('ideation', 'add', 'object', Idea::SUBTYPE);
 
@@ -27,12 +27,8 @@ $body = elgg_list_entities([
 	'no_results' => true,
 ]);
 
-// build page
-$page_data = elgg_view_layout('content', [
-	'title' => $title,
-	'content' => $body,
-	'filter_context' => ($user->guid === elgg_get_logged_in_user_guid()) ? 'mine' : 'none',
-]);
-
 // draw page
-echo elgg_view_page($title, $page_data);
+echo elgg_view_page($title, [
+	'content' => $body,
+	'filter_value' => ($page_owner->guid === elgg_get_logged_in_user_guid()) ? 'mine' : 'none',
+]);
