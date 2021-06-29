@@ -17,21 +17,14 @@ elgg_register_title_button('ideation', 'add', 'object', Idea::SUBTYPE);
 // build page elements
 if ($page_owner->guid === elgg_get_logged_in_user_guid()) {
 	$title = elgg_echo('ideation:friends:title:mine');
+	$filter_value = 'friends';
 } else {
 	$title = elgg_echo('ideation:friends:title', [$page_owner->getDisplayName()]);
+	$filter_value = 'none';
 }
-
-$body = elgg_list_entities([
-	'type' => 'object',
-	'subtype' => Idea::SUBTYPE,
-	'relationship' => 'friend',
-	'relationship_guid' => $page_owner->guid,
-	'relationship_join_on' => 'owner_guid',
-	'no_results' => elgg_echo('ideation:no_results'),
-]);
 
 // draw page
 echo elgg_view_page($title, [
-	'content' => $body,
-	'filter_value' => 'friends',
+	'content' => elgg_view('ideation/listing/friends', ['entity' => $page_owner]),
+	'filter_value' => $filter_value,
 ]);

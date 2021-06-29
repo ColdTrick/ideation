@@ -14,20 +14,9 @@ elgg_push_collection_breadcrumbs('object', Idea::SUBTYPE, $entity);
 
 elgg_register_title_button('ideation', 'add', 'object', Idea::SUBTYPE);
 
-// build page elements
-$title = elgg_echo('ideation:group:title', [$entity->getDisplayName()]);
-
-$body = elgg_list_entities([
-	'type' => 'object',
-	'subtype' => Idea::SUBTYPE,
-	'container_guid' => $entity->guid,
-	'distinct' => false,
-	'no_results' => elgg_echo('ideation:no_results'),
-]);
-
 // draw page
-echo elgg_view_page($title, [
-	'content' => $body,
+echo elgg_view_page(elgg_echo('ideation:group:title', [$entity->getDisplayName()]), [
+	'content' => elgg_view('ideation/listing/group', ['entity' => $entity]),
 	'filter_id' => 'idea/group',
 	'filter_value' => 'group',
 ]);
