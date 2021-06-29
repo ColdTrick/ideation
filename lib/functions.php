@@ -4,61 +4,16 @@
  */
 
 /**
- * Prepare the input vars for the add/edit form
- *
- * @param Idea $entity the entity to edit
- *
- * @return array
- */
-function ideation_prepare_form_vars($entity = null) {
-	
-	$defaults = [
-		'title' => '',
-		'description' => '',
-		'tags' => [],
-		'status' => 'new',
-		'target_audience' => '',
-		'problem' => '',
-		'access_id' => get_default_access(),
-	];
-	
-	// load the data from the entity (on edit)
-	if ($entity instanceof Idea) {
-		foreach ($defaults as $name => $value) {
-			$defaults[$name] = $entity->$name;
-		}
-		
-		$defaults['entity'] = $entity;
-	}
-	
-	// load sticky form vars
-	$sticky = elgg_get_sticky_values('ideation/edit');
-	if (!empty($sticky)) {
-		foreach ($sticky as $name => $value) {
-			$defaults[$name] = $value;
-		}
-		
-		elgg_clear_sticky_form('ideation/edit');
-	}
-	
-	return $defaults;
-}
-
-/**
  * Get the idea linked to a question
  *
- * @param ElggQuestion $question
+ * @param \ElggQuestion $question
  *
  * @return false|Idea
  */
-function ideation_get_idea_linked_to_question($question) {
+function ideation_get_idea_linked_to_question(\ElggQuestion $question) {
 	
 	if (!elgg_is_active_plugin('questions')) {
 		// plugin not enabled so no checks needed
-		return false;
-	}
-	
-	if (!($question instanceof ElggQuestion)) {
 		return false;
 	}
 	
@@ -81,7 +36,7 @@ function ideation_get_idea_linked_to_question($question) {
  *
  * @return bool
  */
-function ideation_questions_integration_enabled() {
+function ideation_questions_integration_enabled(): bool {
 	static $result;
 	
 	if (isset($result)) {
@@ -137,7 +92,7 @@ function ideation_get_suggested_questions_profile_fields() {
  *
  * @return array
  */
-function ideation_get_status_options($add_empty = false) {
+function ideation_get_status_options($add_empty = false): array {
 	
 	$result = [
 		'new' => elgg_echo('ideation:status:new'),
@@ -168,7 +123,7 @@ function ideation_get_status_options($add_empty = false) {
  *
  * @return string[]
  */
-function ideation_get_closed_states() {
+function ideation_get_closed_states(): array {
 	
 	$closed_states = [
 		'rejected',
@@ -179,10 +134,5 @@ function ideation_get_closed_states() {
 		'defaults' => $closed_states,
 	];
 	
-	$result = elgg_trigger_plugin_hook('closed_states', 'ideation', $params, $closed_states);
-	if (!is_array($result)) {
-		return $closed_states;
-	}
-	
-	return $result;
+	return elgg_trigger_plugin_hook('closed_states', 'ideation', $params, $closed_states);
 }

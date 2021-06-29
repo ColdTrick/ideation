@@ -65,17 +65,13 @@ class Idea extends ElggObject {
 	/**
 	 * Link a question to this idea
 	 *
-	 * @param ElggQuestion $question the question to link
+	 * @param \ElggQuestion $question the question to link
 	 *
 	 * @return bool
 	 */
-	public function linkQuestion($question) {
+	public function linkQuestion(\ElggQuestion $question) {
 		
 		if (!ideation_questions_integration_enabled()) {
-			return false;
-		}
-		
-		if (!$question instanceof ElggQuestion) {
 			return false;
 		}
 		
@@ -100,7 +96,7 @@ class Idea extends ElggObject {
 		return elgg_call(ELGG_IGNORE_ACCESS, function() {
 			$batch = $this->getEntitiesFromRelationship([
 				'type' => 'object',
-				'subtype' => ElggQuestion::SUBTYPE,
+				'subtype' => \ElggQuestion::SUBTYPE,
 				'relationship' => self::QUESTION_RELATIONSHIP,
 				'inverse_relationship' => true,
 				'limit' => false,
@@ -109,7 +105,7 @@ class Idea extends ElggObject {
 			]);
 			
 			$result = 0;
-			/* @var $question ElggQuestion */
+			/* @var $question \ElggQuestion */
 			foreach ($batch as $question) {
 				if ($question->delete()) {
 					$result++;

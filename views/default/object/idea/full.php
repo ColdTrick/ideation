@@ -6,7 +6,7 @@
  */
 
 $entity = elgg_extract('entity', $vars);
-if (!($entity instanceof Idea)) {
+if (!$entity instanceof Idea) {
 	return;
 }
 

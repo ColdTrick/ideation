@@ -1,7 +1,7 @@
 <?php
 /**
- * This file was created by Translation Editor v7.0-beta
- * On 2019-03-27 11:32
+ * This file was created by Translation Editor v8.0
+ * On 2021-06-29 16:42
  */
 
 return array (
@@ -14,9 +14,7 @@ return array (
   'ideation:status:closed' => 'Gesloten',
   'ideation:idea:delete:confirm' => 'Weet je zeker dat je dit Idee wilt verwijderen. Alle gerelateerde vragen worden ook verwijderd!',
   'item:object:idea' => 'Idee',
-  'ideation:breadcrumb:all' => 'Ideation',
-  'ideation:breadcrumb:suggested' => 'Aangeraden',
-  'ideation:add' => 'Nieuw idee',
+  'add:object:idea' => 'Nieuw idee',
   'ideation:no_results' => 'Er zijn nog geen ideeën aangemaakt',
   'ideation:settings:enable_personal' => 'Schakel Ideation in voor persoonlijk gebruik',
   'ideation:settings:enable_personal:help' => 'Indien ingeschakeld kunnen gebruiker Ideation gebruiken in hun persoonlijke context, dus buiten groepen.',
@@ -45,10 +43,6 @@ return array (
   'ideation:suggested:error:logged_out' => 'Je moet zijn aangemeld om deze lijst te kunnen bekijken',
   'ideation:suggested:error:user_profile' => 'Er is niet genoeg informatie gevonden op je profiel om vragen aan te kunnen raden, vul je profiel aan.',
   'ideation:suggested:error:no_results' => 'Er konden geen vragen worden gevonden op basis van je profiel informatie.',
-  'ideation:edit:icon' => 'Icoon',
-  'ideation:edit:icon:limit' => 'Maximaal toegestane bestandsgrootte is %s',
-  'ideation:edit:icon:remove' => 'Verwijder het huidige icoon',
-  'ideation:edit:icon:remove:help' => 'Verwijderd het huidige icoon, dit heeft voorrang boven het uploaden van een nieuw icoon',
   'ideation:status' => 'Status',
   'ideation:status:new' => 'Nieuw',
   'ideation:status:accepted' => 'Geaccepteerd',
@@ -56,16 +50,13 @@ return array (
   'ideation:status:rejected' => 'Afgewezen',
   'ideation:status:implemented' => 'Geïmplementeerd',
   'ideation:notification:create:subject' => 'Er is een nieuw idee aangemaakt: %s',
-  'ideation:notification:create:summary' => 'Beste %s,
-
-%s heeft een nieuw idee aangemaakt \'%s\'. Help bij het realiseren van dit idee.
+  'ideation:notification:create:summary' => 'Er is een nieuw idee aangemaakt: %s',
+  'ideation:notification:create:body' => '%s heeft een nieuw idee aangemaakt \'%s\'. Help bij het realiseren van dit idee.
 
 Om het idee te bekijken, klik hier:
 %s',
   'ideation:notification:idea:owner:question:create:subject' => 'Er is een vraag gesteld op je idee: %s',
-  'ideation:notification:idea:owner:question:create:summary' => 'Beste %s,
-
-%s heeft een vraag gesteld op jouw idee \'%s\'.
+  'ideation:notification:idea:owner:question:create:summary' => '%s heeft een vraag gesteld op jouw idee \'%s\'.
 
 %s
 
@@ -75,9 +66,7 @@ Om het idee te bekijken, klik hier:
 Om de vraag te bekijken, klik hier:
 %s',
   'ideation:notification:idea:owner:answer:create:subject' => 'Er is een antwoord gegeven voor jou idee: %s',
-  'ideation:notification:idea:owner:answer:create:summary' => 'Beste %s,
-
-%s heeft een antwoord gegeven op de vraag \'%s\' voor jouw idee \'%s\'.
+  'ideation:notification:idea:owner:answer:create:summary' => '%s heeft een antwoord gegeven op de vraag \'%s\' voor jouw idee \'%s\'.
 
 %s
 

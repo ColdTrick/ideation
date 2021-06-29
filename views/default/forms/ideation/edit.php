@@ -37,7 +37,7 @@ echo elgg_view_field([
 echo elgg_view('entity/edit/icon', [
 	'entity' => $entity,
 	'entity_type' => 'object',
-	'entity_subtype' => 'idea',
+	'entity_subtype' => \Idea::SUBTYPE,
 ]);
 
 // description
@@ -93,7 +93,7 @@ echo elgg_view_field([
 	'name' => 'access_id',
 	'value' => elgg_extract('access_id', $vars),
 	'type' => 'object',
-	'subtype' => Idea::SUBTYPE,
+	'subtype' => \Idea::SUBTYPE,
 	'entity' => $entity,
 ]);
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace ColdTrick\Ideation;
+namespace ColdTrick\Ideation\Plugins;
 
 class CSVExporter {
 	

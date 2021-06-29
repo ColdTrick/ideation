@@ -12,9 +12,7 @@ class Permissions {
 	 * @return void|false
 	 */
 	public static function ideaContainerPermissions(\Elgg\Hook $hook) {
-		
-		$subtype = $hook->getParam('subtype');
-		if ($subtype !== \Idea::SUBTYPE) {
+		if ($hook->getParam('subtype') !== \Idea::SUBTYPE) {
 			return;
 		}
 		
@@ -30,7 +28,6 @@ class Permissions {
 				return false;
 			}
 		} elseif ($container instanceof \ElggGroup) {
-			
 			if (!$container->isToolEnabled('ideation')) {
 				return false;
 			}
@@ -46,7 +43,7 @@ class Permissions {
 	 * @return void|false
 	 */
 	public static function containerLogicCheck(\Elgg\Hook $hook) {
-		if ($hook->getParam('subtype') !== 'idea') {
+		if ($hook->getParam('subtype') !== \Idea::SUBTYPE) {
 			return;
 		}
 		

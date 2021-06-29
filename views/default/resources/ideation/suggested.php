@@ -4,17 +4,19 @@
  * based on profile data
  */
 
+use Elgg\Exceptions\Http\BadRequestException;
+use Elgg\Exceptions\Http\EntityNotFoundException;
+
 $page_owner = elgg_get_page_owner_entity();
 if ($page_owner instanceof ElggGroup) {
-	elgg_entity_gatekeeper($page_owner->guid, 'group');
 	elgg_group_tool_gatekeeper('ideation', $page_owner->guid);
 } elseif (!$page_owner instanceof ElggUser) {
-	throw new \Elgg\EntityNotFoundException();
+	throw new EntityNotFoundException();
 }
 
 if (!ideation_get_suggested_questions_profile_fields()) {
 	// questions not enabled
-	forward(REFERER);
+	throw new BadRequestException();
 }
 
 elgg_register_title_button('ideation', 'add', 'object', Idea::SUBTYPE);

@@ -6,10 +6,7 @@ return [
 	'item:object:idea' => 'Idea',
 	'collection:object:idea' => 'Ideas',
 	
-	'ideation:breadcrumb:all' => 'Ideation',
-	'ideation:breadcrumb:suggested' => 'Suggested',
-	
-	'ideation:add' => 'Add an idea',
+	'add:object:idea' => 'Add an idea',
 	'ideation:no_results' => 'No ideas created yet',
 	
 	'ideation:target_audience' => "Target audience",
@@ -64,13 +61,6 @@ return [
 	'ideation:suggested:error:user_profile' => "Not enough information on your profile to suggest questions, please fill your profile.",
 	'ideation:suggested:error:no_results' => "No questions could be found based on your profile information.",
 	
-	// edit
-	'ideation:edit:icon' => "Icon",
-	'ideation:edit:icon:limit' => "Maximum allowed file size is %s",
-	
-	'ideation:edit:icon:remove' => "Remove the current icon",
-	'ideation:edit:icon:remove:help' => "Removes the current icon, this takes precedence over uploading an icon.",
-	
 	// status
 	'ideation:status' => "Status",
 	'ideation:status:new' => "New",
@@ -83,18 +73,14 @@ return [
 	// notifications
 	'ideation:notification:create:subject' => "New idea created: %s",
 	'ideation:notification:create:summary' => "New idea created: %s",
-	'ideation:notification:create:summary' => "Hi %s,
-
-%s created a new idea '%s'. Help make this a reality.
+	'ideation:notification:create:body' => "%s created a new idea '%s'. Help make this a reality.
 
 To view the idea, click here:
 %s",
 	
 	'ideation:notification:idea:owner:question:create:subject' => "A new question was asked on your idea: %s",
 	'ideation:notification:idea:owner:question:create:summary' => "A new question was asked on your idea: %s",
-	'ideation:notification:idea:owner:question:create:summary' => "Hi %s,
-
-%s asked a question on your idea '%s'.
+	'ideation:notification:idea:owner:question:create:summary' => "%s asked a question on your idea '%s'.
 
 %s
 
@@ -106,9 +92,7 @@ To view the question, click here:
 	
 	'ideation:notification:idea:owner:answer:create:subject' => "A new answer was posted for your idea: %s",
 	'ideation:notification:idea:owner:answer:create:summary' => "A new question was posted for your idea: %s",
-	'ideation:notification:idea:owner:answer:create:summary' => "Hi %s,
-
-%s posted an answer to the question '%s' on your idea '%s'.
+	'ideation:notification:idea:owner:answer:create:summary' => "%s posted an answer to the question '%s' on your idea '%s'.
 
 %s
 

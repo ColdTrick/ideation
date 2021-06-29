@@ -1,6 +1,7 @@
 {
 	"name": "coldtrick/ideation",
 	"description": "Help the creative process from idea to end result",
+	"homepage": "https://www.coldtrick.com",
 	"type": "elgg-plugin",
 	"keywords": ["elgg", "plugin", "ideation"],
 	"license": "GPL-2.0-only",
@@ -16,6 +17,6 @@
 		"coldtrick/releases": "dev-master"
 	},
 	"conflict": {
-		"elgg/elgg": "<3.3"
+		"elgg/elgg": "<4.0"
 	}
 }

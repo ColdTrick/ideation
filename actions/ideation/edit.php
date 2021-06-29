@@ -4,7 +4,7 @@ elgg_make_sticky_form('ideation/edit');
 
 $guid = (int) get_input('guid');
 $container_guid = (int) get_input('container_guid');
-$title = get_input('title');
+$title = elgg_get_title_input();
 
 if (empty($title) || (empty($guid) && empty($container_guid))) {
 	return elgg_error_response(elgg_echo('error:missing_data'));
@@ -14,12 +14,12 @@ $entity = false;
 $create = false;
 if (!empty($guid)) {
 	$entity = get_entity($guid);
-	if (!($entity instanceof Idea) || !$entity->canEdit()) {
+	if (!$entity instanceof Idea || !$entity->canEdit()) {
 		return elgg_error_response(elgg_echo('actionunauthorized'));
 	}
 } elseif (!empty($container_guid)) {
 	$container = get_entity($container_guid);
-	if (!($container instanceof ElggUser) && !($container instanceof ElggGroup)) {
+	if (!$container instanceof ElggUser && !$container instanceof ElggGroup) {
 		return elgg_error_response(elgg_echo('actionunauthorized'));
 	} elseif (!$container->canWriteToContainer(0, 'object', Idea::SUBTYPE)) {
 		return elgg_error_response(elgg_echo('actionunauthorized'));
@@ -31,7 +31,7 @@ if (!empty($guid)) {
 	$entity->container_guid = $container->guid;
 }
 
-if (!($entity instanceof Idea)) {
+if (!$entity instanceof Idea) {
 	// shouldn't happen
 	return elgg_error_response(elgg_echo('save:fail'));
 }

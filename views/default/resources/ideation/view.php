@@ -9,18 +9,17 @@ $entity = get_entity($guid);
 elgg_push_entity_breadcrumbs($entity, false);
 
 // Questions support
-\ColdTrick\Ideation\Questions::registerTitleMenuItem($entity);
+\ColdTrick\Ideation\Plugins\Questions::registerTitleMenuItem($entity);
 
 // build page elements
-$title = $entity->getDisplayName();
-
 $body = elgg_view_entity($entity, [
 	'full_view' => true,
 	'show_responses' => true,
 ]);
 
 // draw page
-echo elgg_view_page($title, [
+echo elgg_view_page($entity->getDisplayName(), [
 	'content' => $body,
 	'entity' => $entity,
+	'filter_id' => 'idea/view',
 ]);

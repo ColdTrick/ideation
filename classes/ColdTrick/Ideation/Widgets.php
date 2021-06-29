@@ -33,6 +33,20 @@ class Widgets {
 				}
 				
 				return elgg_generate_url('collection:object:idea:all');
+			case 'ideation_suggested_questions':
+				
+				if ($entity->getOwnerEntity() instanceof \ElggGroup) {
+					return elgg_generate_url('collection:object:idea:group:suggested', [
+						'guid' => $entity->owner_guid,
+					]);
+				}
+				
+				$user = elgg_get_logged_in_user_entity();
+				if (!empty($user)) {
+					return elgg_generate_url('collection:object:idea:suggested', [
+						'username' => $user->username,
+					]);
+				}
 				break;
 		}
 	}

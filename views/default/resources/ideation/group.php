@@ -22,11 +22,12 @@ $body = elgg_list_entities([
 	'subtype' => Idea::SUBTYPE,
 	'container_guid' => $entity->guid,
 	'distinct' => false,
-	'no_results' => true,
+	'no_results' => elgg_echo('ideation:no_results'),
 ]);
 
 // draw page
 echo elgg_view_page($title, [
 	'content' => $body,
+	'filter_id' => 'idea/group',
 	'filter_value' => 'group',
 ]);

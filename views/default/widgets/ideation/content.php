@@ -1,5 +1,7 @@
 <?php
 
+use Elgg\Database\Clauses\OrderByClause;
+
 /* @var $widget ElggWidget */
 $widget = elgg_extract('entity', $vars);
 
@@ -25,7 +27,7 @@ if (!empty($status)) {
 // sorting
 $sort = $widget->sort;
 if ($sort === 'time_updated') {
-	$options['order_by'] = 'e.time_updated DESC';
+	$options['order_by'] = new OrderByClause('e.time_updated', 'DESC');
 }
 
 // container limiter

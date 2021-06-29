@@ -14,7 +14,7 @@ $body = elgg_list_entities([
 	'type' => 'object',
 	'subtype' => Idea::SUBTYPE,
 	'distinct' => false,
-	'no_results' => true,
+	'no_results' => elgg_echo('ideation:no_results'),
 ]);
 
 // draw page

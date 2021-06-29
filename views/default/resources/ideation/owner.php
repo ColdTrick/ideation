@@ -3,9 +3,11 @@
  * List all ideas by a user
  */
 
+use Elgg\Exceptions\Http\EntityNotFoundException;
+
 $page_owner = elgg_get_page_owner_entity();
 if (!$page_owner instanceof ElggUser) {
-	throw new \Elgg\EntityNotFoundException();
+	throw new EntityNotFoundException();
 }
 
 elgg_push_collection_breadcrumbs('object', Idea::SUBTYPE, $page_owner);
@@ -24,7 +26,7 @@ $body = elgg_list_entities([
 	'subtype' => Idea::SUBTYPE,
 	'owner_guid' => $page_owner->guid,
 	'distinct' => false,
-	'no_results' => true,
+	'no_results' => elgg_echo('ideation:no_results'),
 ]);
 
 // draw page
