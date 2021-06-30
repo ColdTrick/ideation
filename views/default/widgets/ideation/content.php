@@ -11,7 +11,7 @@ $options = [
 	'subtype' => Idea::SUBTYPE,
 	'limit' => $widget->num_display ?: 5,
 	'pagination' => false,
-	'no_results' => true,
+	'no_results' => elgg_echo('ideation:no_results'),
 	'metadata_name_value_pairs' => [],
 ];
 
