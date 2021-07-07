@@ -42,7 +42,7 @@ class Questions {
 		elgg_register_menu_item('title', [
 			'name' => 'add_question',
 			'icon' => 'plus',
-			'text' => elgg_echo('questions:add'),
+			'text' => elgg_echo('add:object:question'),
 			'href' => elgg_generate_url('add:object:question', [
 				'guid' => $container->guid,
 				'idea_guid' => $entity->guid,
