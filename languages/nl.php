@@ -1,10 +1,11 @@
 <?php
 /**
  * This file was created by Translation Editor v8.0
- * On 2021-06-29 16:42
+ * On 2021-07-12 11:35
  */
 
 return array (
+  'ideation:friends:title' => '%s\'s ideeën van vrienden',
   'collection:object:idea' => 'Ideeën',
   'ideation:settings:enable_comments' => 'Schakel reacties op Ideeën in',
   'ideation:settings:enable_comments:help' => 'Indien dit is ingeschakeld kunnen gebruikers reacties achterlaten op Ideeën',
@@ -33,7 +34,6 @@ return array (
   'ideation:all:title' => 'Alle ideeën',
   'ideation:owner:title' => '%s\'s ideeën',
   'ideation:owner:title:mine' => 'Mijn ideeën',
-  'ideation:friends:title' => 'Ideeën van vrienden',
   'ideation:friends:title:mine' => 'Ideeën van mijn vrienden',
   'ideation:group:title' => '%s\'s ideeën',
   'ideation:add:title' => 'Nieuw idee',
