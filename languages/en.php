@@ -5,6 +5,7 @@ return [
 	// generic
 	'item:object:idea' => 'Idea',
 	'collection:object:idea' => 'Ideas',
+	'notification:object:idea:create' => 'Send a notification when an Idea is created',
 	
 	'add:object:idea' => 'Add an idea',
 	'ideation:no_results' => 'No ideas created yet',
