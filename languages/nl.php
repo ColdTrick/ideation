@@ -1,10 +1,11 @@
 <?php
 /**
  * This file was created by Translation Editor v8.0
- * On 2021-07-12 11:35
+ * On 2021-08-06 10:32
  */
 
 return array (
+  'notification:object:idea:create' => 'Verstuur een notificatie als een idee wordt aangemaakt',
   'ideation:friends:title' => '%s\'s ideeën van vrienden',
   'collection:object:idea' => 'Ideeën',
   'ideation:settings:enable_comments' => 'Schakel reacties op Ideeën in',
