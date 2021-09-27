@@ -7,7 +7,7 @@ require_once(dirname(__FILE__) . '/lib/functions.php');
 
 return [
 	'plugin' => [
-		'version' => '3.0',
+		'version' => '4.0',
 	],
 	'settings' => [
 		'enable_comments' => 'yes',
